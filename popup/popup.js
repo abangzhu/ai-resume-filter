@@ -48,12 +48,11 @@ async function loadPageInfo(tab) {
     } catch {}
     $('candidate-count').textContent = `${candidateCount} 人`;
     $('btn-start').disabled = candidateCount === 0;
-  } else if (pageType === 'candidate_detail') {
-    $('candidate-count').textContent = '详情页（返回列表开始批量）';
-    $('btn-start').disabled = true;
   } else {
-    $('candidate-count').textContent = '请在评估列表页使用';
-    $('btn-start').disabled = true;
+    // 非列表页（候选人详情 / hire_other / unknown）：显示单候选人评分按钮
+    $('candidate-count').textContent = '详情页';
+    $('btn-start').style.display = 'none';
+    $('btn-score-current').style.display = '';
   }
 
   // 最近的 JD
@@ -117,8 +116,8 @@ async function loadTemplateSelection(pageType, candidateCount) {
     }
   }
 
-  // 仅在列表页且有候选人时显示下拉选择
-  if (pageType === 'candidate_list' && candidateCount > 0) {
+  // 列表页有候选人 或 候选人详情页 均显示下拉选择
+  if ((pageType === 'candidate_list' && candidateCount > 0) || pageType === 'candidate_detail') {
     $('template-select-area').style.display = '';
     const select = $('template-select');
     select.innerHTML = tplList.map(t => {
@@ -138,6 +137,17 @@ async function loadTemplateSelection(pageType, candidateCount) {
           templateId: selectedTemplateId,
         });
       }
+      // 候选人详情页：通知 content script 同步 overlay
+      if (pageType === 'candidate_detail') {
+        const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+        if (tab) {
+          chrome.tabs.sendMessage(tab.id, {
+            type: 'TEMPLATE_CHANGED',
+            templateId: selectedTemplateId,
+            templateName: tpl?.name,
+          }).catch(() => {});
+        }
+      }
     });
   }
 }
@@ -153,7 +163,10 @@ async function syncBatchState() {
     $('btn-stop').style.display  = '';
   } else {
     $('progress-area').style.display = 'none';
-    $('btn-start').style.display = '';
+    // 仅在单候选人评分按钮未显示时恢复批量按钮，避免覆盖详情页状态
+    if ($('btn-score-current').style.display === 'none') {
+      $('btn-start').style.display = '';
+    }
     $('btn-stop').style.display  = 'none';
   }
 }
@@ -199,6 +212,9 @@ chrome.runtime.onMessage.addListener((msg) => {
   }
   if (msg.type === 'SCORE_RESULT') {
     loadStats();
+    // 评分完成后重新启用单候选人评分按钮
+    const btnScore = $('btn-score-current');
+    if (btnScore) btnScore.disabled = false;
   }
 });
 
@@ -241,6 +257,41 @@ $('btn-start').addEventListener('click', async () => {
   } catch (e) {
     alert('无法连接到页面，请刷新后重试');
     $('btn-start').disabled = false;
+  }
+});
+
+$('btn-score-current').addEventListener('click', async () => {
+  if (!selectedTemplateId) {
+    alert('请先选择评分模板');
+    return;
+  }
+
+  // 保存 jobTemplate 绑定
+  if (currentJobId) {
+    await chrome.runtime.sendMessage({
+      type: 'SET_JOB_TEMPLATE',
+      jobId: currentJobId,
+      templateId: selectedTemplateId,
+    });
+  }
+
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (!tab) return;
+
+  $('btn-score-current').disabled = true;
+  try {
+    const res = await chrome.tabs.sendMessage(tab.id, {
+      type: 'SCORE_CURRENT',
+      templateId: selectedTemplateId,
+    });
+    if (!res?.ok) {
+      alert(res?.error || '评分启动失败');
+      $('btn-score-current').disabled = false;
+    }
+    // 评分进行中，按钮保持禁用；SCORE_RESULT 消息到达后刷新统计
+  } catch {
+    alert('无法连接到页面，请刷新后重试');
+    $('btn-score-current').disabled = false;
   }
 });
 

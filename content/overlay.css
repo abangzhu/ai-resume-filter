@@ -236,6 +236,14 @@
   border-bottom: 1px solid #f3f4f6;
 }
 
+.cvfx-tpl-switch {
+  color: #1a56db;
+  cursor: pointer;
+  font-size: 11px;
+  margin-left: 4px;
+}
+.cvfx-tpl-switch:hover { text-decoration: underline; }
+
 /* ── Template Selection Dialog ──────────────────────────────── */
 #cvfx-template-dialog {
   position: fixed;

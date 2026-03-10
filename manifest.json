@@ -10,7 +10,7 @@
     "tabs"
   ],
   "host_permissions": [
-    "https://*.feishu.cn/hire/*"
+    "https://*.feishu.cn/*"
   ],
   "background": {
     "service_worker": "background/service-worker.js"
