@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CVFilterX 设置</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="page">
+    <header class="page-header">
+      <h1>CVFilterX <span>设置</span></h1>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="api">API 设置</button>
+      <button class="tab" data-tab="fields">字段配置</button>
+      <button class="tab" data-tab="templates">评分模板</button>
+      <button class="tab" data-tab="advanced">高级设置</button>
+    </nav>
+
+    <!-- Tab 1: API 设置 -->
+    <section class="tab-content active" id="tab-api">
+      <div class="form-group">
+        <label for="apiKey">API Key</label>
+        <input type="password" id="apiKey" placeholder="sk-..." autocomplete="off">
+        <span class="hint">你的 OpenAI 或兼容接口 API Key，仅存储在本地，不会上传。</span>
+      </div>
+
+      <div class="form-group">
+        <label for="baseUrl">Base URL</label>
+        <input type="text" id="baseUrl" placeholder="https://api.openai.com/v1">
+        <span class="hint">兼容 OpenAI /chat/completions 格式的接口地址。</span>
+      </div>
+
+      <div class="form-group">
+        <label for="model">模型</label>
+        <div class="row-group">
+          <input type="text" id="model" placeholder="gpt-4o-mini">
+          <div class="quick-pick">
+            <button class="chip" data-model="gpt-4o-mini">gpt-4o-mini</button>
+            <button class="chip" data-model="gpt-4o">gpt-4o</button>
+            <button class="chip" data-model="gpt-3.5-turbo">gpt-3.5-turbo</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button id="btn-test" class="btn secondary">测试连接</button>
+        <button id="btn-save-api" class="btn primary">保存</button>
+      </div>
+      <div id="test-result" class="feedback"></div>
+      <div id="save-api-result" class="feedback"></div>
+    </section>
+
+    <!-- Tab 2: 字段配置 -->
+    <section class="tab-content" id="tab-fields">
+      <p class="section-desc">选择从简历中提取哪些字段，字段越少 Token 消耗越低，但评分维度会受限。</p>
+
+      <div class="field-list">
+        <label class="field-row">
+          <input type="checkbox" id="field-basicInfo">
+          <div>
+            <span class="field-name">基本信息</span>
+            <span class="field-desc">当前职位、公司、工作年限、城市等概要</span>
+          </div>
+        </label>
+        <label class="field-row">
+          <input type="checkbox" id="field-workExperience">
+          <div>
+            <span class="field-name">工作经历</span>
+            <span class="field-desc">历史公司、职位名称、在职时间、工作描述</span>
+          </div>
+        </label>
+        <label class="field-row">
+          <input type="checkbox" id="field-education">
+          <div>
+            <span class="field-name">教育背景</span>
+            <span class="field-desc">学历、学校、专业、毕业年份</span>
+          </div>
+        </label>
+        <label class="field-row">
+          <input type="checkbox" id="field-skills">
+          <div>
+            <span class="field-name">技能标签</span>
+            <span class="field-desc">候选人的技能关键词标签</span>
+          </div>
+        </label>
+        <label class="field-row">
+          <input type="checkbox" id="field-selfIntroduction">
+          <div>
+            <span class="field-name">自我介绍</span>
+            <span class="field-desc">候选人填写的自我介绍文本</span>
+          </div>
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button id="btn-save-fields" class="btn primary">保存</button>
+      </div>
+      <div id="save-fields-result" class="feedback"></div>
+    </section>
+
+    <!-- Tab 3: 评分模板 -->
+    <section class="tab-content" id="tab-templates">
+      <p class="section-desc">为不同职位族创建专属评估模板，每个模板可独立定义评分维度和 Prompt。</p>
+
+      <div class="template-toolbar">
+        <button id="btn-add-template" class="btn primary btn-sm">+ 新建模板</button>
+      </div>
+
+      <div id="template-list" class="template-list"></div>
+      <div id="save-template-result" class="feedback"></div>
+    </section>
+
+    <!-- Tab 4: 高级设置 -->
+    <section class="tab-content" id="tab-advanced">
+      <div class="form-group">
+        <label for="autoPaginateDelay">翻页间隔（毫秒）</label>
+        <div class="inline-input">
+          <input type="number" id="autoPaginateDelay" min="500" max="10000" step="100">
+          <span class="unit">ms</span>
+        </div>
+        <span class="hint">每条候选人评分完成后，等待多久再自动跳下一条（500-10000ms）。</span>
+      </div>
+
+      <div class="form-group">
+        <label class="checkbox-label">
+          <input type="checkbox" id="skipScored">
+          <span>跳过已有缓存评分的候选人</span>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="cacheExpireDays">评分缓存有效期（天）</label>
+        <div class="inline-input">
+          <input type="number" id="cacheExpireDays" min="0" max="365">
+          <span class="unit">天（0 = 永久）</span>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button id="btn-save-advanced" class="btn primary">保存</button>
+      </div>
+      <div id="save-advanced-result" class="feedback"></div>
+    </section>
+
+  </div>
+
+  <!-- 模板编辑弹窗 -->
+  <div id="template-modal" class="modal" style="display:none">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title">新建模板</h2>
+        <button id="modal-close" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="tpl-name">模板名称</label>
+          <input type="text" id="tpl-name" placeholder="如：后端工程师">
+        </div>
+        <div class="form-group">
+          <label for="tpl-desc">描述</label>
+          <input type="text" id="tpl-desc" placeholder="简要说明模板适用范围">
+        </div>
+        <div class="form-group">
+          <label for="tpl-keywords">匹配关键词</label>
+          <input type="text" id="tpl-keywords" placeholder="逗号分隔，如：后端,backend,java,golang">
+          <span class="hint">当职位标题包含这些关键词时，系统会自动推荐此模板。</span>
+        </div>
+
+        <div class="form-group">
+          <label>评分维度</label>
+          <div id="modal-dim-list" class="dimension-list"></div>
+          <div class="dim-footer">
+            <span class="weight-total">总权重：<strong id="modal-weight-total">0</strong>%
+              <span id="modal-weight-warn" class="weight-warn" style="display:none">（应为 100%）</span>
+            </span>
+            <button id="btn-modal-add-dim" class="btn secondary btn-sm">+ 添加维度</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tpl-prompt">自定义 Prompt 模板</label>
+          <div class="var-hints">
+            可用变量：<code>{jd}</code> 职位描述　<code>{resume}</code> 简历内容　<code>{dimensions}</code> 评估维度列表
+          </div>
+          <textarea id="tpl-prompt" rows="8" placeholder="留空则使用内置默认 Prompt"></textarea>
+          <span class="hint">留空时使用内置 Prompt；填写后将完全替换（需包含输出 JSON 格式说明）。</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-modal-cancel" class="btn secondary">取消</button>
+        <button id="btn-modal-save" class="btn primary">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

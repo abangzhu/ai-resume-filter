@@ -1,0 +1,5718 @@
+{
+  "code": 0,
+  "success": true,
+  "data": {
+    "evaluation_list": [
+      {
+        "id": "7613288507025770793",
+        "job_id": "7594306724983621951",
+        "talent_id": "7579575059367643430",
+        "application_id": "7613288806510332198",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606965440,
+        "biz_create_time": 1772606965440,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606965440,
+          "id": "7613288507025770793"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613288507025770793",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7613288806510332198",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606965440,
+            "biz_create_time": 1772606965440,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7579575059367643430",
+          "name": "杜永辉",
+          "gender": 1,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "experience_years": null,
+          "career_list": [
+            {
+              "id": "7579575059367708966",
+              "company": "上海合合信息科技股份有限公司",
+              "title": "后端开发",
+              "desc": null,
+              "start_time": "2020-06",
+              "end_time": "-"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7579575059367659814",
+              "degree": 6,
+              "school": "南京理工大学",
+              "field_of_study": "软件工程",
+              "start_time": "2016-08",
+              "end_time": "2020-06"
+            }
+          ],
+          "tag_list": [
+            2,
+            100,
+            101
+          ],
+          "create_time": 1764757366781,
+          "modify_time": 1764757366781,
+          "recent_company": "上海合合信息科技股份有限公司",
+          "recent_title": "后端开发",
+          "graduate_school": "南京理工大学",
+          "graduate_major": "软件工程",
+          "graduate_year": "2020",
+          "top_degree": null,
+          "under_graduate_school": "南京理工大学",
+          "under_graduate_major": "软件工程",
+          "age": null,
+          "creator": {
+            "id": "50",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            },
+            {
+              "id": "100001",
+              "name": "其它",
+              "en_name": "Other",
+              "i18n_name": "Other"
+            }
+          ],
+          "gender_info": {
+            "gender": 1,
+            "name": "男",
+            "en_name": "Male",
+            "i18n_name": "Male"
+          },
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7594306724983621951",
+          "title": "高级AI Agent工程师",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7613288806510332198",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1772606939661,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613285160695777545",
+        "job_id": "7599490361782798635",
+        "talent_id": "7602201547380033834",
+        "application_id": "7602201731137603882",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107812,
+        "biz_create_time": 1772606107812,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107812,
+          "id": "7613285160695777545"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613285160695777545",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7602201731137603882",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107812,
+            "biz_create_time": 1772606107812,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7602201547380033834",
+          "name": "张博韬",
+          "gender": null,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "experience_years": null,
+          "career_list": [
+            {
+              "id": "7602201547380115754",
+              "company": "虾皮信息Shopee",
+              "title": "tech lead",
+              "desc": null,
+              "start_time": "2022-01",
+              "end_time": "-"
+            },
+            {
+              "id": "7602201547380132138",
+              "company": "上海哔哩哔哩科技有限公司",
+              "title": "tech lead",
+              "desc": null,
+              "start_time": "2021-01",
+              "end_time": "2021-12"
+            },
+            {
+              "id": "7602201547380148522",
+              "company": "字节跳动",
+              "title": "搜索算法",
+              "desc": null,
+              "start_time": "2018-12",
+              "end_time": "2020-12"
+            },
+            {
+              "id": "7602201547380164906",
+              "company": "大众点评",
+              "title": "技术主管",
+              "desc": null,
+              "start_time": "2015-10",
+              "end_time": "2018-10"
+            },
+            {
+              "id": "7602201547380181290",
+              "company": "平安健康互联网股份有限公司",
+              "title": "服务端工程师",
+              "desc": null,
+              "start_time": "2014-04",
+              "end_time": "2015-09"
+            },
+            {
+              "id": "7602201547380197674",
+              "company": "真旅网计算机软件开发(上海)有限公司",
+              "title": "java软件工程师",
+              "desc": null,
+              "start_time": "2013-07",
+              "end_time": "2014-04"
+            },
+            {
+              "id": "7602201547380214058",
+              "company": "上海万达信息服务有限公司",
+              "title": "java工程师",
+              "desc": null,
+              "start_time": "2011-07",
+              "end_time": "2013-07"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7602201547380082986",
+              "degree": 6,
+              "school": "黑龙江大学",
+              "field_of_study": "种子科学与工程",
+              "start_time": "2008-09",
+              "end_time": "2012-07"
+            }
+          ],
+          "tag_list": [
+            3,
+            6,
+            14,
+            100,
+            101
+          ],
+          "create_time": 1770025546710,
+          "modify_time": 1770025546710,
+          "recent_company": "虾皮信息Shopee",
+          "recent_title": "tech lead",
+          "graduate_school": "黑龙江大学",
+          "graduate_major": "种子科学与工程",
+          "graduate_year": "2012",
+          "top_degree": null,
+          "under_graduate_school": "黑龙江大学",
+          "under_graduate_major": "种子科学与工程",
+          "age": null,
+          "creator": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            }
+          ],
+          "gender_info": null,
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7602201731137603882",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1770025546556,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613285160695761161",
+        "job_id": "7599490361782798635",
+        "talent_id": "7612968905707440438",
+        "application_id": "7612968872019052819",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107812,
+        "biz_create_time": 1772606107812,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107812,
+          "id": "7613285160695761161"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613285160695761161",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7612968872019052819",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107812,
+            "biz_create_time": 1772606107812,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7612968905707440438",
+          "name": "张永嘉",
+          "gender": null,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "experience_years": null,
+          "career_list": [
+            {
+              "id": "7612968905707555126",
+              "company": "笃禀私募",
+              "title": "量化研发(项目承接)",
+              "desc": "",
+              "start_time": "2025-01",
+              "end_time": "-"
+            },
+            {
+              "id": "7612968905707571510",
+              "company": "哈啰单车",
+              "title": "Java技术专家",
+              "desc": "",
+              "start_time": "2019-10",
+              "end_time": "2024-11"
+            },
+            {
+              "id": "7612968905707587894",
+              "company": "Cloudun 海外信贷(印尼)",
+              "title": "技术经理",
+              "desc": "",
+              "start_time": "2019-02",
+              "end_time": "2019-10"
+            },
+            {
+              "id": "7612968905707604278",
+              "company": "平安银行",
+              "title": "技术经理",
+              "desc": "",
+              "start_time": "2016-06",
+              "end_time": "2019-02"
+            },
+            {
+              "id": "7612968905707620662",
+              "company": "Innotech Group 海外广告流量",
+              "title": "Java研发",
+              "desc": "",
+              "start_time": "2014-10",
+              "end_time": "2016-06"
+            },
+            {
+              "id": "7612968905707637046",
+              "company": "万达信息",
+              "title": "研发",
+              "desc": "",
+              "start_time": "2011-06",
+              "end_time": "2014-09"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7612968905707456822",
+              "degree": 6,
+              "school": "郑州大学",
+              "field_of_study": "计算机科学与技术",
+              "start_time": null,
+              "end_time": null
+            }
+          ],
+          "tag_list": [
+            2,
+            100,
+            101
+          ],
+          "create_time": 1772532471842,
+          "modify_time": 1772532471842,
+          "recent_company": "笃禀私募",
+          "recent_title": "量化研发(项目承接)",
+          "graduate_school": "郑州大学",
+          "graduate_major": "计算机科学与技术",
+          "graduate_year": null,
+          "top_degree": null,
+          "under_graduate_school": "郑州大学",
+          "under_graduate_major": "计算机科学与技术",
+          "age": null,
+          "creator": {
+            "id": "50",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            }
+          ],
+          "gender_info": null,
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7612968872019052819",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1772532471721,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613285160695744777",
+        "job_id": "7599490361782798635",
+        "talent_id": "7612942405026203954",
+        "application_id": "7612942428186118446",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107812,
+        "biz_create_time": 1772606107812,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107812,
+          "id": "7613285160695744777"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613285160695744777",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7612942428186118446",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107812,
+            "biz_create_time": 1772606107812,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7612942405026203954",
+          "name": "崔武",
+          "gender": null,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "experience_years": null,
+          "career_list": [
+            {
+              "id": "7612942405026236722",
+              "company": "上海中畅数据技术有限公司",
+              "title": "高级开发工程师",
+              "desc": null,
+              "start_time": "2020-06",
+              "end_time": "-"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7612942405026220338",
+              "degree": 6,
+              "school": "洛阳师范学院",
+              "field_of_study": "计算机",
+              "start_time": null,
+              "end_time": null
+            }
+          ],
+          "tag_list": [
+            3,
+            100,
+            101
+          ],
+          "create_time": 1772526300263,
+          "modify_time": 1772526300263,
+          "recent_company": "上海中畅数据技术有限公司",
+          "recent_title": "高级开发工程师",
+          "graduate_school": "洛阳师范学院",
+          "graduate_major": "计算机",
+          "graduate_year": null,
+          "top_degree": null,
+          "under_graduate_school": "洛阳师范学院",
+          "under_graduate_major": "计算机",
+          "age": null,
+          "creator": {
+            "id": "50",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            }
+          ],
+          "gender_info": null,
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7612942428186118446",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1772526300145,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613285160695728393",
+        "job_id": "7599490361782798635",
+        "talent_id": "7606228733268019465",
+        "application_id": "7606228834966833454",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107812,
+        "biz_create_time": 1772606107812,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107812,
+          "id": "7613285160695728393"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613285160695728393",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7606228834966833454",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107812,
+            "biz_create_time": 1772606107812,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7606228733268019465",
+          "name": "钱先生",
+          "gender": 1,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "4",
+            "name": "猎聘",
+            "en_name": "Liepin.com",
+            "i18n_name": "Liepin.com"
+          },
+          "experience_years": null,
+          "career_list": [
+            {
+              "id": "7606228733268117769",
+              "company": "花旗金融信息服务(中国)有限公司",
+              "title": "应用开发工程师（全栈）",
+              "desc": null,
+              "start_time": "2022-04",
+              "end_time": "2025-09"
+            },
+            {
+              "id": "7606228733268134153",
+              "company": "仟寻信息科技(上海)有限公司（上海大岂）",
+              "title": "开发工程师",
+              "desc": null,
+              "start_time": "2019-05",
+              "end_time": "2022-04"
+            },
+            {
+              "id": "7606228733268150537",
+              "company": "北京智社信息技术有限公司",
+              "title": "Java 工程师",
+              "desc": null,
+              "start_time": "2018-12",
+              "end_time": "2019-04"
+            },
+            {
+              "id": "7606228733268166921",
+              "company": "上海亚太神通计算机信息系统有限公司",
+              "title": "Java 工程师",
+              "desc": null,
+              "start_time": "2016-05",
+              "end_time": "2018-11"
+            },
+            {
+              "id": "7606228733268183305",
+              "company": "上海源泰艺术品服务有限公司",
+              "title": "Java 工程师",
+              "desc": null,
+              "start_time": "2014-09",
+              "end_time": "2016-05"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7606228733268035849",
+              "degree": 6,
+              "school": "池州学院",
+              "field_of_study": "电子信息科学与技术",
+              "start_time": "2010-09",
+              "end_time": "2014-07"
+            }
+          ],
+          "tag_list": [],
+          "create_time": 1770963195417,
+          "modify_time": 1770963195417,
+          "recent_company": "花旗金融信息服务(中国)有限公司",
+          "recent_title": "应用开发工程师（全栈）",
+          "graduate_school": "池州学院",
+          "graduate_major": "电子信息科学与技术",
+          "graduate_year": "2014",
+          "top_degree": null,
+          "under_graduate_school": "池州学院",
+          "under_graduate_major": "电子信息科学与技术",
+          "age": null,
+          "creator": {
+            "id": "50",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "4",
+              "name": "猎聘",
+              "en_name": "Liepin.com",
+              "i18n_name": "Liepin.com"
+            }
+          ],
+          "gender_info": {
+            "gender": 1,
+            "name": "男",
+            "en_name": "Male",
+            "i18n_name": "Male"
+          },
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7606228834966833454",
+          "resume_source": {
+            "id": "4",
+            "name": "猎聘",
+            "en_name": "Liepin.com",
+            "i18n_name": "Liepin.com"
+          },
+          "biz_create_time": 1770963195356,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613285160695712009",
+        "job_id": "7599490361782798635",
+        "talent_id": "7602559223717644595",
+        "application_id": "7602559263877155081",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107812,
+        "biz_create_time": 1772606107812,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107812,
+          "id": "7613285160695712009"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613285160695712009",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7602559263877155081",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107812,
+            "biz_create_time": 1772606107812,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7602559223717644595",
+          "name": "裴子龙",
+          "gender": 1,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "experience_years": null,
+          "career_list": [
+            {
+              "id": "7602559223717660979",
+              "company": "成都万物增长科技有限公司",
+              "title": "AI SAAS研发负责人(技术合伙人)",
+              "desc": null,
+              "start_time": "2025-04",
+              "end_time": "-"
+            },
+            {
+              "id": "7602559223717677363",
+              "company": "杭州卧兔网络科技有限公司",
+              "title": "cto(技术合伙人)",
+              "desc": null,
+              "start_time": "2023-12",
+              "end_time": "2025-02"
+            },
+            {
+              "id": "7602559223717693747",
+              "company": "杭州宠胖胖科技有限公司(步步高子公司",
+              "title": "研发副总监",
+              "desc": null,
+              "start_time": "2022-09",
+              "end_time": "2023-11"
+            },
+            {
+              "id": "7602559223717710131",
+              "company": "广州欢聚时代信息科技有限公司",
+              "title": "风控负责人",
+              "desc": null,
+              "start_time": "2020-12",
+              "end_time": "2022-06"
+            },
+            {
+              "id": "7602559223717726515",
+              "company": "盈盈集团有限公司",
+              "title": "高级技术专家",
+              "desc": null,
+              "start_time": "2017-09",
+              "end_time": "2020-10"
+            }
+          ],
+          "education_list": [],
+          "tag_list": [
+            100,
+            101
+          ],
+          "create_time": 1770108778635,
+          "modify_time": 1770108778635,
+          "recent_company": "成都万物增长科技有限公司",
+          "recent_title": "AI SAAS研发负责人(技术合伙人)",
+          "graduate_school": null,
+          "graduate_major": null,
+          "graduate_year": null,
+          "top_degree": null,
+          "under_graduate_school": null,
+          "under_graduate_major": null,
+          "age": null,
+          "creator": {
+            "id": "50",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            }
+          ],
+          "gender_info": {
+            "gender": 1,
+            "name": "男",
+            "en_name": "Male",
+            "i18n_name": "Male"
+          },
+          "top_degree_info": null,
+          "first_degree": {
+            "degree_type": 7,
+            "name": "未填写",
+            "en_name": "Not filled in",
+            "i18n_name": "Not filled in"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7602559263877155081",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1770108778502,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613284900843079945",
+        "job_id": "7599490361782798635",
+        "talent_id": "7612969714307238170",
+        "application_id": "7612969777266477350",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107745,
+        "biz_create_time": 1772606107745,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107745,
+          "id": "7613284900843079945"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613284900843079945",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7612969777266477350",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107745,
+            "biz_create_time": 1772606107745,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7612969714307238170",
+          "name": "董明霞",
+          "gender": 2,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "experience_years": null,
+          "career_list": [
+            {
+              "id": "7612969714307287322",
+              "company": "花旗金融信息服务有限公司",
+              "title": "高级开发",
+              "desc": null,
+              "start_time": "2021-04",
+              "end_time": "2025-09"
+            },
+            {
+              "id": "7612969714307303706",
+              "company": "上海和逸金融信息服务有限公司",
+              "title": "全栈工程师",
+              "desc": null,
+              "start_time": "2017-04",
+              "end_time": "2021-04"
+            },
+            {
+              "id": "7612969714307320090",
+              "company": "上海网波软件股份有限公司",
+              "title": "全栈工程师",
+              "desc": null,
+              "start_time": "2013-09",
+              "end_time": "2017-03"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7612969714307270938",
+              "degree": 6,
+              "school": "南通大学",
+              "field_of_study": "地理信息系统GIS",
+              "start_time": "2009-09",
+              "end_time": "2013-06"
+            }
+          ],
+          "tag_list": [
+            3,
+            100,
+            101
+          ],
+          "create_time": 1772532674357,
+          "modify_time": 1772532676548,
+          "recent_company": "花旗金融信息服务有限公司",
+          "recent_title": "高级开发",
+          "graduate_school": "南通大学",
+          "graduate_major": "地理信息系统GIS",
+          "graduate_year": "2013",
+          "top_degree": null,
+          "under_graduate_school": "南通大学",
+          "under_graduate_major": "地理信息系统GIS",
+          "age": null,
+          "creator": {
+            "id": "50",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            }
+          ],
+          "gender_info": {
+            "gender": 2,
+            "name": "女",
+            "en_name": "Female",
+            "i18n_name": "Female"
+          },
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7612969777266477350",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1772532674277,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613284900843063561",
+        "job_id": "7599490361782798635",
+        "talent_id": "7612968892898609471",
+        "application_id": "7612968851345639743",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107745,
+        "biz_create_time": 1772606107745,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107745,
+          "id": "7613284900843063561"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613284900843063561",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7612968851345639743",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107745,
+            "biz_create_time": 1772606107745,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7612968892898609471",
+          "name": "牛强",
+          "gender": 1,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "experience_years": null,
+          "career_list": [
+            {
+              "id": "7612968892898642239",
+              "company": "上海万素本元智能科技有限公司",
+              "title": "CTO",
+              "desc": null,
+              "start_time": "2025-08",
+              "end_time": "-"
+            },
+            {
+              "id": "7612968892898658623",
+              "company": "上海商汤智能科技有限公司",
+              "title": "资深后端架构师",
+              "desc": null,
+              "start_time": "2021-04",
+              "end_time": "2025-08"
+            },
+            {
+              "id": "7612968892898675007",
+              "company": "炫一下(北京)科技有限公司",
+              "title": "架构师",
+              "desc": null,
+              "start_time": "2018-04",
+              "end_time": "2021-04"
+            },
+            {
+              "id": "7612968892898691391",
+              "company": "哔哩哔哩",
+              "title": "Golang",
+              "desc": null,
+              "start_time": "2015-12",
+              "end_time": "2018-03"
+            },
+            {
+              "id": "7612968892898707775",
+              "company": "安居客",
+              "title": "PHP",
+              "desc": null,
+              "start_time": "2015-08",
+              "end_time": "2015-11"
+            },
+            {
+              "id": "7612968892898724159",
+              "company": "戴文信息科技(上海)有限公司",
+              "title": "PHP",
+              "desc": null,
+              "start_time": "2014-07",
+              "end_time": "2015-07"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7612968892898625855",
+              "degree": 6,
+              "school": "中国海洋大学",
+              "field_of_study": "高分子材料与工程",
+              "start_time": "2010-09",
+              "end_time": "2014-06"
+            }
+          ],
+          "tag_list": [
+            1,
+            100,
+            101
+          ],
+          "create_time": 1772532473648,
+          "modify_time": 1772532476021,
+          "recent_company": "上海万素本元智能科技有限公司",
+          "recent_title": "CTO",
+          "graduate_school": "中国海洋大学",
+          "graduate_major": "高分子材料与工程",
+          "graduate_year": "2014",
+          "top_degree": null,
+          "under_graduate_school": "中国海洋大学",
+          "under_graduate_major": "高分子材料与工程",
+          "age": null,
+          "creator": {
+            "id": "50",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            }
+          ],
+          "gender_info": {
+            "gender": 1,
+            "name": "男",
+            "en_name": "Male",
+            "i18n_name": "Male"
+          },
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7612968851345639743",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1772532473542,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613284900843047177",
+        "job_id": "7599490361782798635",
+        "talent_id": "7613042220103256366",
+        "application_id": "7613042164856146226",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107745,
+        "biz_create_time": 1772606107745,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107745,
+          "id": "7613284900843047177"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613284900843047177",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7613042164856146226",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107745,
+            "biz_create_time": 1772606107745,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7613042220103256366",
+          "name": "吴后金",
+          "gender": 1,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "experience_years": null,
+          "career_list": [
+            {
+              "id": "7613042220103289134",
+              "company": "江苏保旺达软件技术有限公司",
+              "title": "技术架构部架构师",
+              "desc": null,
+              "start_time": "2024-07",
+              "end_time": "2026-01"
+            },
+            {
+              "id": "7613042220103305518",
+              "company": "南京永中软件有限公司",
+              "title": "架构师",
+              "desc": null,
+              "start_time": "2023-05",
+              "end_time": "2024-07"
+            },
+            {
+              "id": "7613042220103321902",
+              "company": "江苏保旺达软件技术有限公司",
+              "title": "架构师",
+              "desc": null,
+              "start_time": "2021-04",
+              "end_time": "2023-05"
+            },
+            {
+              "id": "7613042220103338286",
+              "company": "中软国际科技服务南京有限公司",
+              "title": "开发六部资深Java开发工程师",
+              "desc": null,
+              "start_time": "2019-07",
+              "end_time": "2021-04"
+            },
+            {
+              "id": "7613042220103354670",
+              "company": "杭州星狐互联科技有限责任公司",
+              "title": "技术部技术合伙人",
+              "desc": null,
+              "start_time": "2015-11",
+              "end_time": "2019-07"
+            },
+            {
+              "id": "7613042220103371054",
+              "company": "江苏海隆软件有限公司",
+              "title": "海外开发部软件工程师",
+              "desc": null,
+              "start_time": "2010-08",
+              "end_time": "2015-11"
+            },
+            {
+              "id": "7613042220103387438",
+              "company": "无锡晟欧软件有限公司",
+              "title": "技术部软件工程师",
+              "desc": "",
+              "start_time": "2008-07",
+              "end_time": "2010-08"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7613042220103272750",
+              "degree": 6,
+              "school": "南昌航空大学",
+              "field_of_study": "教育技术学",
+              "start_time": "2004-09",
+              "end_time": "2008-06"
+            }
+          ],
+          "tag_list": [
+            3,
+            100,
+            101
+          ],
+          "create_time": 1772549584170,
+          "modify_time": 1772549584170,
+          "recent_company": "江苏保旺达软件技术有限公司",
+          "recent_title": "技术架构部架构师",
+          "graduate_school": "南昌航空大学",
+          "graduate_major": "教育技术学",
+          "graduate_year": "2008",
+          "top_degree": null,
+          "under_graduate_school": "南昌航空大学",
+          "under_graduate_major": "教育技术学",
+          "age": null,
+          "creator": {
+            "id": "50",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            }
+          ],
+          "gender_info": {
+            "gender": 1,
+            "name": "男",
+            "en_name": "Male",
+            "i18n_name": "Male"
+          },
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7613042164856146226",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1772549584085,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613284900843030793",
+        "job_id": "7599490361782798635",
+        "talent_id": "7613017659509246258",
+        "application_id": "7613017731206514994",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107745,
+        "biz_create_time": 1772606107745,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107745,
+          "id": "7613284900843030793"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613284900843030793",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7613017731206514994",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107745,
+            "biz_create_time": 1772606107745,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7613017659509246258",
+          "name": "温利平",
+          "gender": null,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "experience_years": null,
+          "career_list": [
+            {
+              "id": "7613017659509295410",
+              "company": "上海得物信息集团有限公司",
+              "title": "架构师(D8)",
+              "desc": "",
+              "start_time": "2024-04",
+              "end_time": "2025-12"
+            },
+            {
+              "id": "7613017659509311794",
+              "company": "腾讯科技上海有限公司",
+              "title": "高级软件开发工程师",
+              "desc": "",
+              "start_time": "2021-11",
+              "end_time": "2024-02"
+            },
+            {
+              "id": "7613017659509328178",
+              "company": "携程旅游技术有限公司",
+              "title": "高级软件开发工程师",
+              "desc": "",
+              "start_time": "2014-05",
+              "end_time": "2021-09"
+            },
+            {
+              "id": "7613017659509344562",
+              "company": "上海易迅电商有限公司",
+              "title": "软件开发工程师",
+              "desc": "",
+              "start_time": "2012-07",
+              "end_time": "2014-05"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7613017659509279026",
+              "degree": 7,
+              "school": "哈尔滨工业大学",
+              "field_of_study": "计算机",
+              "start_time": "2010-09",
+              "end_time": "2012-07"
+            },
+            {
+              "id": "7613017659509262642",
+              "degree": 6,
+              "school": "哈尔滨工业大学",
+              "field_of_study": "市政工程",
+              "start_time": "2006-09",
+              "end_time": "2010-07"
+            }
+          ],
+          "tag_list": [
+            1,
+            100,
+            101
+          ],
+          "create_time": 1772543857945,
+          "modify_time": 1772543860895,
+          "recent_company": "上海得物信息集团有限公司",
+          "recent_title": "架构师(D8)",
+          "graduate_school": "哈尔滨工业大学",
+          "graduate_major": "计算机",
+          "graduate_year": "2012",
+          "top_degree": null,
+          "under_graduate_school": "哈尔滨工业大学",
+          "under_graduate_major": "市政工程",
+          "age": null,
+          "creator": {
+            "id": "50",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            }
+          ],
+          "gender_info": null,
+          "top_degree_info": {
+            "degree_type": 7,
+            "name": "硕士",
+            "en_name": "Master's",
+            "i18n_name": "Master's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7613017731206514994",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1772543857862,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613284900843014409",
+        "job_id": "7599490361782798635",
+        "talent_id": "7543937483341302079",
+        "application_id": "7612971253041269034",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107745,
+        "biz_create_time": 1772606107745,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107745,
+          "id": "7613284900843014409"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613284900843014409",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7612971253041269034",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107745,
+            "biz_create_time": 1772606107745,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7543937483341302079",
+          "name": "肖友强",
+          "gender": 1,
+          "nationality": null,
+          "current_city": {
+            "city_code": "ST_47",
+            "name": "上海",
+            "en_name": "Shanghai",
+            "i18n_name": "Shanghai"
+          },
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "experience_years": 21,
+          "career_list": [
+            {
+              "id": "7612971271198492964",
+              "company": "浙江享脉科技有限公司",
+              "title": "AI架构师",
+              "desc": null,
+              "start_time": "2025-03",
+              "end_time": "-"
+            },
+            {
+              "id": "7612971271198509348",
+              "company": "无界数字科技有限公司",
+              "title": "架构师&AI负责人",
+              "desc": null,
+              "start_time": "2024-03",
+              "end_time": "2025-03"
+            },
+            {
+              "id": "7612971271198525732",
+              "company": "鲨湾科技(上海)有限公司",
+              "title": "资深架构师&运维负责人",
+              "desc": null,
+              "start_time": "2022-08",
+              "end_time": "2024-01"
+            },
+            {
+              "id": "7612971271198542116",
+              "company": "上海执方网络科技有限公司",
+              "title": "Golang架构师",
+              "desc": null,
+              "start_time": "2018-08",
+              "end_time": "2022-08"
+            },
+            {
+              "id": "7612971271198558500",
+              "company": "上海阅人信息科技有限公司",
+              "title": "php架构师&Python",
+              "desc": null,
+              "start_time": "2016-06",
+              "end_time": "2018-07"
+            },
+            {
+              "id": "7612971271198574884",
+              "company": "上海盈灿投资管理有限公司-网贷之家",
+              "title": "php架构师",
+              "desc": null,
+              "start_time": "2014-03",
+              "end_time": "2016-06"
+            },
+            {
+              "id": "7612971271198591268",
+              "company": "江西精彩生活投资发展有限公司",
+              "title": "PHP组长",
+              "desc": null,
+              "start_time": "2010-10",
+              "end_time": "2014-02"
+            },
+            {
+              "id": "7612971271198607652",
+              "company": "北京百盾安合网络科技有限公司",
+              "title": "php开发工程师",
+              "desc": null,
+              "start_time": "2008-09",
+              "end_time": "2010-09"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7612971271198443812",
+              "degree": 6,
+              "school": "",
+              "field_of_study": "",
+              "start_time": null,
+              "end_time": null
+            }
+          ],
+          "tag_list": [
+            100,
+            101
+          ],
+          "create_time": 1756459842859,
+          "modify_time": 1772533026697,
+          "recent_company": "浙江享脉科技有限公司",
+          "recent_title": "AI架构师",
+          "graduate_school": "",
+          "graduate_major": "",
+          "graduate_year": null,
+          "top_degree": null,
+          "under_graduate_school": "",
+          "under_graduate_major": "",
+          "age": 41,
+          "creator": {
+            "id": "UserID_TalentSystermUser",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            },
+            {
+              "id": "100001",
+              "name": "其它",
+              "en_name": "Other",
+              "i18n_name": "Other"
+            }
+          ],
+          "gender_info": {
+            "gender": 1,
+            "name": "男",
+            "en_name": "Male",
+            "i18n_name": "Male"
+          },
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7612971253041269034",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1772533023125,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613284900842768649",
+        "job_id": "7599490361782798635",
+        "talent_id": "7613067859510085934",
+        "application_id": "7613066696077953307",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107711,
+        "biz_create_time": 1772606107711,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107711,
+          "id": "7613284900842768649"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613284900842768649",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7613066696077953307",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107711,
+            "biz_create_time": 1772606107711,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7613067859510085934",
+          "name": "高先生",
+          "gender": 1,
+          "nationality": null,
+          "current_city": {
+            "city_code": "CT_125",
+            "name": "上海",
+            "en_name": "Shanghai",
+            "i18n_name": "Shanghai"
+          },
+          "hometown_city": null,
+          "preferred_city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "init_source": {
+            "id": "4",
+            "name": "猎聘",
+            "en_name": "Liepin.com",
+            "i18n_name": "Liepin.com"
+          },
+          "experience_years": 4,
+          "career_list": [
+            {
+              "id": "7613279920890644763",
+              "company": "苹果(TEKSystem)",
+              "title": "全栈开发工程师",
+              "desc": "1.负责内部业务系统的全栈开发（React＋Flask）\n2.负责多产品线数据平台的搭建和维护（Python＋Tableau）\n3.负责针对产品工厂测试数据的可视化分析和开发（Python）",
+              "start_time": "2023-04",
+              "end_time": "-"
+            },
+            {
+              "id": "7613279920890661147",
+              "company": "江苏智慧用能低碳技术研究院有限公司",
+              "title": "研发工程师",
+              "desc": "1.负责物联网平台的需求对接以及后端开发（Django，MQTT， Modbus， AWS）。\n2.负责数据库的维护以及部署和运维．",
+              "start_time": "2022-07",
+              "end_time": "2023-04"
+            },
+            {
+              "id": "7613279920890677531",
+              "company": "南京百丝特网络科技有限公司",
+              "title": "Python后端开发工程师",
+              "desc": "1.跨平台数据同步工具开发和维护（Python），包括 Shopify， Bigquery， Feishu， Google Sheet。\n2.公司内部客户信息系统的后端开发以及运维（Django）．",
+              "start_time": "2021-11",
+              "end_time": "2022-06"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7613279920890628379",
+              "degree": 6,
+              "school": "奥克兰大学",
+              "field_of_study": "计算机科学与技术",
+              "start_time": "2019-02",
+              "end_time": "2021-09"
+            },
+            {
+              "id": "7613279920890611995",
+              "degree": 6,
+              "school": "奥克兰理工大学",
+              "field_of_study": "计算机科学",
+              "start_time": "2018-02",
+              "end_time": "2018-11"
+            }
+          ],
+          "tag_list": [
+            4,
+            100,
+            101
+          ],
+          "create_time": 1772555527186,
+          "modify_time": 1772604893552,
+          "recent_company": "苹果(TEKSystem)",
+          "recent_title": "全栈开发工程师",
+          "graduate_school": "奥克兰大学",
+          "graduate_major": "计算机科学与技术",
+          "graduate_year": "2021",
+          "top_degree": null,
+          "under_graduate_school": "奥克兰大学",
+          "under_graduate_major": "计算机科学与技术",
+          "age": 32,
+          "creator": {
+            "id": "50",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "4",
+              "name": "猎聘",
+              "en_name": "Liepin.com",
+              "i18n_name": "Liepin.com"
+            }
+          ],
+          "gender_info": {
+            "gender": 1,
+            "name": "男",
+            "en_name": "Male",
+            "i18n_name": "Male"
+          },
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7613066696077953307",
+          "resume_source": {
+            "id": "4",
+            "name": "猎聘",
+            "en_name": "Liepin.com",
+            "i18n_name": "Liepin.com"
+          },
+          "biz_create_time": 1772555527122,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613284900842752265",
+        "job_id": "7599490361782798635",
+        "talent_id": "7541526267029752083",
+        "application_id": "7612552951857416494",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107711,
+        "biz_create_time": 1772606107711,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107711,
+          "id": "7613284900842752265"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613284900842752265",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7612552951857416494",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107711,
+            "biz_create_time": 1772606107711,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7541526267029752083",
+          "name": "刘浏",
+          "gender": 1,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [
+            {
+              "city_code": "ST_47",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            },
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "init_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "experience_years": 13,
+          "career_list": [
+            {
+              "id": "7612552946937219355",
+              "company": "云天畅想(北京)有限公司",
+              "title": "项目裁员",
+              "desc": null,
+              "start_time": "2024-01",
+              "end_time": "2026-02"
+            },
+            {
+              "id": "7612552946937235739",
+              "company": "中电金信软件有限公司",
+              "title": "数仓开发",
+              "desc": null,
+              "start_time": "2020-11",
+              "end_time": "2023-11"
+            },
+            {
+              "id": "7612552946937252123",
+              "company": "北京库神信息技术有限公司",
+              "title": "数仓开发",
+              "desc": null,
+              "start_time": "2016-03",
+              "end_time": "2020-10"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7612552946937202971",
+              "degree": 6,
+              "school": "阜阳师范大学",
+              "field_of_study": "",
+              "start_time": null,
+              "end_time": null
+            }
+          ],
+          "tag_list": [
+            3,
+            100,
+            101
+          ],
+          "create_time": 1755898478923,
+          "modify_time": 1772435617953,
+          "recent_company": "云天畅想(北京)有限公司",
+          "recent_title": "项目裁员",
+          "graduate_school": "阜阳师范大学",
+          "graduate_major": "",
+          "graduate_year": null,
+          "top_degree": null,
+          "under_graduate_school": "阜阳师范大学",
+          "under_graduate_major": "",
+          "age": 34,
+          "creator": {
+            "id": "UserID_TalentSystermUser",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            },
+            {
+              "id": "100001",
+              "name": "其它",
+              "en_name": "Other",
+              "i18n_name": "Other"
+            }
+          ],
+          "gender_info": {
+            "gender": 1,
+            "name": "男",
+            "en_name": "Male",
+            "i18n_name": "Male"
+          },
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7612552951857416494",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1772435617740,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613284900842735881",
+        "job_id": "7599490361782798635",
+        "talent_id": "7602201599335893290",
+        "application_id": "7602201801726904617",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107711,
+        "biz_create_time": 1772606107711,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107711,
+          "id": "7613284900842735881"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613284900842735881",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7602201801726904617",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107711,
+            "biz_create_time": 1772606107711,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7602201599335893290",
+          "name": "韩华",
+          "gender": null,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "experience_years": null,
+          "career_list": [
+            {
+              "id": "7602201599336122666",
+              "company": "中科创达软件股份有限公司",
+              "title": "算法工程师",
+              "desc": null,
+              "start_time": "2025-01",
+              "end_time": "-"
+            },
+            {
+              "id": "7602201599336139050",
+              "company": "深圳市灵图闪创科技有限公司",
+              "title": "算法工程师",
+              "desc": null,
+              "start_time": "2024-01",
+              "end_time": "2025-01"
+            },
+            {
+              "id": "7602201599336155434",
+              "company": "江西海梦科技有限公司",
+              "title": "it技术支持",
+              "desc": null,
+              "start_time": "2019-01",
+              "end_time": "2021-01"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7602201599335975210",
+              "degree": 7,
+              "school": "中国科学院大学",
+              "field_of_study": "计算机技术",
+              "start_time": "2021-09",
+              "end_time": "2024-06"
+            },
+            {
+              "id": "7602201599335958826",
+              "degree": 6,
+              "school": "南昌航空大学",
+              "field_of_study": "软件工程",
+              "start_time": "2014-09",
+              "end_time": "2018-06"
+            }
+          ],
+          "tag_list": [
+            3,
+            100,
+            101
+          ],
+          "create_time": 1770025548888,
+          "modify_time": 1770025548888,
+          "recent_company": "中科创达软件股份有限公司",
+          "recent_title": "算法工程师",
+          "graduate_school": "中国科学院大学",
+          "graduate_major": "计算机技术",
+          "graduate_year": "2024",
+          "top_degree": null,
+          "under_graduate_school": "南昌航空大学",
+          "under_graduate_major": "软件工程",
+          "age": null,
+          "creator": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            }
+          ],
+          "gender_info": null,
+          "top_degree_info": {
+            "degree_type": 7,
+            "name": "硕士",
+            "en_name": "Master's",
+            "i18n_name": "Master's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7602201801726904617",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1770025548691,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613284900842719497",
+        "job_id": "7599490361782798635",
+        "talent_id": "7544045299569756470",
+        "application_id": "7613189315954755881",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772606107711,
+        "biz_create_time": 1772606107711,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772606107711,
+          "id": "7613284900842719497"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613284900842719497",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7613189315954755881",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772606107711,
+            "biz_create_time": 1772606107711,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "7526765668281925636",
+              "name": "孙蓓",
+              "en_name": "孙蓓",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "孙蓓",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_d0e542cfbf1208c43984fcf2c7effdfb",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7544045299569756470",
+          "name": "杨雨锋",
+          "gender": null,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [],
+          "init_source": {
+            "id": "100001",
+            "name": "其它",
+            "en_name": "Other",
+            "i18n_name": "Other"
+          },
+          "experience_years": 18,
+          "career_list": [
+            {
+              "id": "7613189591974398227",
+              "company": "上海商汤科技开发有限公司",
+              "title": "全栈开发",
+              "desc": null,
+              "start_time": "2021-01",
+              "end_time": "-"
+            },
+            {
+              "id": "7613189591974349075",
+              "company": "CCCIS信息技术有限公司",
+              "title": "开发经理",
+              "desc": "",
+              "start_time": "2015-10",
+              "end_time": "2021-09"
+            },
+            {
+              "id": "7613189591974365459",
+              "company": "泰为信息技术有限公司",
+              "title": "高级开发",
+              "desc": "",
+              "start_time": "2012-09",
+              "end_time": "2015-09"
+            },
+            {
+              "id": "7613189591974381843",
+              "company": "上海杰通信息技术有限公司",
+              "title": "初级开发",
+              "desc": "",
+              "start_time": "2008-08",
+              "end_time": "2012-09"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7613189591974299923",
+              "degree": 6,
+              "school": "齐齐哈尔大学",
+              "field_of_study": "计算机科学与技术",
+              "start_time": null,
+              "end_time": null
+            }
+          ],
+          "tag_list": [
+            3,
+            100,
+            101
+          ],
+          "create_time": 1756484943641,
+          "modify_time": 1772583928921,
+          "recent_company": "上海商汤科技开发有限公司",
+          "recent_title": "全栈开发",
+          "graduate_school": "齐齐哈尔大学",
+          "graduate_major": "计算机科学与技术",
+          "graduate_year": null,
+          "top_degree": null,
+          "under_graduate_school": "齐齐哈尔大学",
+          "under_graduate_major": "计算机科学与技术",
+          "age": 44,
+          "creator": {
+            "id": "UserID_TalentSystermUser",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "18",
+              "name": "BOSS直聘",
+              "en_name": "Zhipin.com",
+              "i18n_name": "Zhipin.com"
+            },
+            {
+              "id": "100001",
+              "name": "其它",
+              "en_name": "Other",
+              "i18n_name": "Other"
+            }
+          ],
+          "gender_info": null,
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7599490361782798635",
+          "title": "全栈技术专家",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7613189315954755881",
+          "resume_source": {
+            "id": "18",
+            "name": "BOSS直聘",
+            "en_name": "Zhipin.com",
+            "i18n_name": "Zhipin.com"
+          },
+          "biz_create_time": 1772583924343,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      },
+      {
+        "id": "7613256998512462121",
+        "job_id": "7594306724983621951",
+        "talent_id": "7613257421419579654",
+        "application_id": "7613257343543101702",
+        "stage_id": "7494476856692705586",
+        "content": null,
+        "conclusion": null,
+        "evaluator": {
+          "id": "7469672213025996819",
+          "name": null,
+          "en_name": null,
+          "avatar": null,
+          "i18n_name": null,
+          "department": null,
+          "timezone": null,
+          "open_id": null,
+          "phone": null,
+          "email": null,
+          "in_app_scope": null,
+          "lark_status": null,
+          "is_mainland": null,
+          "country_code": null,
+          "resign_time": null,
+          "leader_id": null,
+          "employee_number": null,
+          "enterprise_email": null,
+          "user_tag_list": null,
+          "avatar72": null,
+          "avatar240": null,
+          "avatar640": null,
+          "location_id": null,
+          "employee_type": null,
+          "user_state": null,
+          "lang": null,
+          "place_id": null,
+          "join_time": null,
+          "user_role": null,
+          "interviewer_info": null
+        },
+        "termination_reason_id_list": null,
+        "commit_status": 2,
+        "biz_modify_time": 1772599657530,
+        "biz_create_time": 1772599657530,
+        "termination_reason_list": null,
+        "conclusion_info": {
+          "conclusion": null,
+          "name": "未评估",
+          "en_name": "Not evaluated yet",
+          "i18n_name": "Not evaluated yet"
+        },
+        "evaluation_time": null,
+        "search_key": {
+          "biz_time": 1772599657530,
+          "id": "7613256998512462121"
+        },
+        "same_application_evaluation_list": [
+          {
+            "id": "7613256998512462121",
+            "job_id": null,
+            "talent_id": null,
+            "application_id": "7613257343543101702",
+            "stage_id": "7494476856692705586",
+            "content": null,
+            "conclusion": null,
+            "evaluator": {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp",
+              "i18n_name": "bill huang",
+              "department": null,
+              "timezone": null,
+              "open_id": "ou_2e552773442058a6d00d0edc42e80560",
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "termination_reason_id_list": null,
+            "commit_status": 2,
+            "biz_modify_time": 1772599657530,
+            "biz_create_time": 1772599657530,
+            "termination_reason_list": null,
+            "conclusion_info": null,
+            "evaluation_time": null,
+            "search_key": null,
+            "same_application_evaluation_list": null,
+            "evaluation_status": null,
+            "evaluation_summary": null,
+            "creator_info": {
+              "id": "100000",
+              "name": "",
+              "en_name": "",
+              "avatar": null,
+              "i18n_name": "",
+              "department": null,
+              "timezone": null,
+              "open_id": null,
+              "phone": null,
+              "email": null,
+              "in_app_scope": null,
+              "lark_status": null,
+              "is_mainland": null,
+              "country_code": null,
+              "resign_time": null,
+              "leader_id": null,
+              "employee_number": null,
+              "enterprise_email": null,
+              "user_tag_list": null,
+              "avatar72": null,
+              "avatar240": null,
+              "avatar640": null,
+              "location_id": null,
+              "employee_type": null,
+              "user_state": null,
+              "lang": null,
+              "place_id": null,
+              "join_time": null,
+              "user_role": null,
+              "interviewer_info": null
+            },
+            "talent": null,
+            "job": null,
+            "application": null,
+            "related_application_evaluation_list": null,
+            "related_application_interview_list": null,
+            "column_masking_type": null,
+            "unmasking_column_list": null
+          }
+        ],
+        "evaluation_status": null,
+        "evaluation_summary": null,
+        "creator_info": null,
+        "talent": {
+          "id": "7613257421419579654",
+          "name": "王道磊",
+          "gender": 1,
+          "nationality": null,
+          "current_city": null,
+          "hometown_city": null,
+          "preferred_city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "init_source": {
+            "id": "4",
+            "name": "猎聘",
+            "en_name": "Liepin.com",
+            "i18n_name": "Liepin.com"
+          },
+          "experience_years": null,
+          "career_list": [
+            {
+              "id": "7613257421419628806",
+              "company": "软通动力(上海)有限公司",
+              "title": "agent高级软件工程师",
+              "desc": null,
+              "start_time": "2025-03",
+              "end_time": "-"
+            },
+            {
+              "id": "7613257421419645190",
+              "company": "上海艾融软件股份有限公司",
+              "title": "高级java工程师",
+              "desc": null,
+              "start_time": "2019-12",
+              "end_time": "2019-12"
+            },
+            {
+              "id": "7613257421419661574",
+              "company": "天阳宏业科技股份有限公司",
+              "title": "高级Java开发工程师",
+              "desc": null,
+              "start_time": "2017-12",
+              "end_time": "2017-12"
+            },
+            {
+              "id": "7613257421419677958",
+              "company": "郑州云计划软件科技有限公司",
+              "title": "Java工程师",
+              "desc": null,
+              "start_time": "2004-06",
+              "end_time": "2004-06"
+            }
+          ],
+          "education_list": [
+            {
+              "id": "7613257421419596038",
+              "degree": 6,
+              "school": "",
+              "field_of_study": "",
+              "start_time": null,
+              "end_time": null
+            }
+          ],
+          "tag_list": [],
+          "create_time": 1772599651661,
+          "modify_time": 1772599651661,
+          "recent_company": "软通动力(上海)有限公司",
+          "recent_title": "agent高级软件工程师",
+          "graduate_school": "",
+          "graduate_major": "",
+          "graduate_year": null,
+          "top_degree": null,
+          "under_graduate_school": "",
+          "under_graduate_major": "",
+          "age": null,
+          "creator": {
+            "id": "50",
+            "name": "",
+            "en_name": "",
+            "i18n_name": "",
+            "avatar": null
+          },
+          "resume_source_list": [
+            {
+              "id": "4",
+              "name": "猎聘",
+              "en_name": "Liepin.com",
+              "i18n_name": "Liepin.com"
+            }
+          ],
+          "gender_info": {
+            "gender": 1,
+            "name": "男",
+            "en_name": "Male",
+            "i18n_name": "Male"
+          },
+          "top_degree_info": {
+            "degree_type": 6,
+            "name": "本科",
+            "en_name": "Bachelor's",
+            "i18n_name": "Bachelor's"
+          },
+          "first_degree": {
+            "degree_type": 3,
+            "name": "本科",
+            "en_name": "Bachelor’s degree",
+            "i18n_name": "Bachelor’s degree"
+          },
+          "infra_tag_list": null,
+          "mobile": null,
+          "mobile_country_code": null,
+          "email": null,
+          "bachelor_degree_type_info": null,
+          "talent_geo": "cn"
+        },
+        "job": {
+          "id": "7594306724983621951",
+          "title": "高级AI Agent工程师",
+          "recruitment_type": {
+            "id": "101",
+            "name": "全职",
+            "en_name": "Full-time",
+            "i18n_name": "Full-time"
+          },
+          "city": null,
+          "department": {
+            "id": "7589588755838274516",
+            "name": "集团产品部",
+            "en_name": "集团产品部",
+            "i18n_name": "集团产品部"
+          },
+          "recruiter": {
+            "id": "7526765668281925636",
+            "name": "孙蓓",
+            "en_name": "孙蓓",
+            "i18n_name": "孙蓓",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00o6_236a522d-a017-4a75-91b3-848e0b9270bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "hiring_manager": {
+            "id": "7469672213025996819",
+            "name": "黄圣彪",
+            "en_name": "bill huang",
+            "i18n_name": "bill huang",
+            "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+          },
+          "top_recruitment_type": {
+            "id": "1",
+            "name": "社招",
+            "en_name": "Experienced",
+            "i18n_name": "Experienced"
+          },
+          "hiring_manager_list": [
+            {
+              "id": "7469672213025996819",
+              "name": "黄圣彪",
+              "en_name": "bill huang",
+              "i18n_name": "bill huang",
+              "avatar": "https://s1-imfile.feishucdn.com/static-resource/v1/v3_00jc_9b100417-3f53-4191-9370-2ce5f039c3bg~?image_size=noop&cut_type=&quality=&format=image&sticker_format=.webp"
+            }
+          ],
+          "job_process_id": "7494478612197067018",
+          "job_category": 1,
+          "city_list": [
+            {
+              "city_code": "CT_125",
+              "name": "上海",
+              "en_name": "Shanghai",
+              "i18n_name": "Shanghai"
+            }
+          ],
+          "storefront_mode": 1
+        },
+        "application": {
+          "id": "7613257343543101702",
+          "resume_source": {
+            "id": "4",
+            "name": "猎聘",
+            "en_name": "Liepin.com",
+            "i18n_name": "Liepin.com"
+          },
+          "biz_create_time": 1772599651575,
+          "stage": {
+            "id": "7494476856692705586",
+            "name": "部门筛选",
+            "en_name": "部门筛选",
+            "i18n_name": "部门筛选",
+            "type": 2,
+            "termination_status": 2
+          },
+          "preferred_city_list": null,
+          "p_category_id": null,
+          "category": 1,
+          "onboard_status": 1
+        },
+        "related_application_evaluation_list": null,
+        "related_application_interview_list": null,
+        "column_masking_type": 2,
+        "unmasking_column_list": null
+      }
+    ],
+    "count": 16,
+    "offset": null,
+    "extra": null,
+    "total_count": 0,
+    "search_after_page_token": null,
+    "page_total_limit": 0,
+    "BaseResp": {
+      "StatusMessage": "SUCCESS",
+      "StatusCode": 0,
+      "Extra": null
+    }
+  },
+  "message": "OK",
+  "special_case_code": 0
+}

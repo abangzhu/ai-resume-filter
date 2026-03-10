@@ -1,0 +1,30 @@
+{
+  "totalElements": 965,
+  "chineseNameCandidates": [],
+  "canvases": 6,
+  "mainAppStructure": "div#main-app { div#header-subapp-viewport[data-next-root-element=true] { div#header-bd { div.main-site-header { ..., ... } } }, div#subapp-viewport { div#garfish_app_for_myTask_anz9gyod { div { ..., ... } } } }",
+  "dataCyValues": [
+    {
+      "cy": "1",
+      "tag": "li",
+      "class": "atsx__ud__menu-item atsx__ud__menu-item-selected atsx__ud__m",
+      "children": 2
+    },
+    {
+      "cy": "4",
+      "tag": "li",
+      "class": "atsx__ud__menu-item atsx__ud__menu-item--root-inline",
+      "children": 2
+    }
+  ],
+  "roles": [
+    "combobox",
+    "faster-main",
+    "menu",
+    "menuitem"
+  ],
+  "shadowHosts": [
+    "ee-knowledge-card-feedback-container",
+    "ud-toast-container"
+  ]
+}

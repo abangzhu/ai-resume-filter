@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>CVFilterX</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup">
+    <!-- Header -->
+    <header class="popup-header">
+      <span class="logo">CVFilterX</span>
+      <button id="btn-settings" class="icon-btn" title="设置">&#9881;</button>
+    </header>
+
+    <!-- API 未配置警告 -->
+    <div id="api-warning" class="warning" style="display:none">
+      API Key 未配置，<a id="link-settings" href="#">点此设置</a>
+    </div>
+
+    <!-- 岗位信息 -->
+    <div class="info-row">
+      <span class="info-label">当前岗位</span>
+      <span id="job-title" class="info-value">--</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">JD 状态</span>
+      <span id="jd-status" class="info-value">--</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">候选人数</span>
+      <span id="candidate-count" class="info-value">--</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">评分模板</span>
+      <span id="template-name" class="info-value">--</span>
+    </div>
+
+    <!-- 模板选择（仅列表页显示） -->
+    <div id="template-select-area" class="template-select-area" style="display:none">
+      <div class="info-row">
+        <span class="info-label">选择模板</span>
+        <select id="template-select" class="template-select"></select>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 批量控制 -->
+    <div class="batch-controls">
+      <button id="btn-start" class="btn primary">&#9654; 开始筛选</button>
+      <button id="btn-stop"  class="btn danger" style="display:none">&#9209; 停止</button>
+    </div>
+
+    <!-- 进度条（批量运行时显示）-->
+    <div id="progress-area" style="display:none">
+      <div class="progress-bar-wrap">
+        <div id="progress-bar" class="progress-bar" style="width:0%"></div>
+      </div>
+      <div class="progress-text">
+        <span id="progress-cur">0</span> / <span id="progress-total">0</span>
+        &nbsp;&nbsp;正在处理中...
+      </div>
+      <div id="progress-errors" class="progress-errors" style="display:none"></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 统计 -->
+    <div class="stats-title">评分统计</div>
+    <div class="stats-grid">
+      <div class="stat-item pass">
+        <span class="stat-num" id="stat-pass">0</span>
+        <span class="stat-label">通过</span>
+      </div>
+      <div class="stat-item hold">
+        <span class="stat-num" id="stat-hold">0</span>
+        <span class="stat-label">待定</span>
+      </div>
+      <div class="stat-item reject">
+        <span class="stat-num" id="stat-reject">0</span>
+        <span class="stat-label">淘汰</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="footer-actions">
+      <button id="btn-clear"  class="btn secondary small">清除记录</button>
+      <button id="btn-export" class="btn secondary small">导出 CSV</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
