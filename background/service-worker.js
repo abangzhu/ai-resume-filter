@@ -262,7 +262,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       return true;
 
     case "FETCH_JD":
-      fetchAndCacheJD(message.jobId, message.origin)
+      fetchAndCacheJD(message.jobId, message.origin, sender.tab?.id)
         .then((jobData) => sendResponse({ ok: true, jobData }))
         .catch((err) => sendResponse({ ok: false, error: err.message }));
       return true;
@@ -759,7 +759,15 @@ async function saveJobData(jobData) {
 }
 
 // ── JD 页面抓取（在 background 中打开新 Tab，注入脚本提取）────
-async function fetchAndCacheJD(jobId, origin) {
+async function fetchAndCacheJD(jobId, origin, senderTabId) {
+  // 防御层 1：cache-first，避免不必要的 tab 创建
+  const cachedData = await chrome.storage.local.get('jobs');
+  const existingJob = cachedData.jobs?.[jobId];
+  if (existingJob?.rawJD && !existingJob.partial) {
+    console.log(`[CVFilterX] fetchAndCacheJD cache hit: ${jobId}`);
+    return existingJob;
+  }
+
   const jobUrl = `${origin}/hire/job/${jobId}?activeTab=basicInfo`;
 
   return new Promise((resolve, reject) => {
@@ -768,11 +776,26 @@ async function fetchAndCacheJD(jobId, origin) {
         return reject(new Error(chrome.runtime.lastError.message));
       }
 
+      // 防御层 2：校验 newTab.id !== senderTabId
+      console.log(`[CVFilterX] fetchAndCacheJD senderTabId=${senderTabId} newTabId=${newTab.id}`);
+      if (senderTabId && newTab.id === senderTabId) {
+        console.error('[CVFilterX] fetchAndCacheJD: newTab.id === senderTabId, aborting tab removal');
+      }
+
       let settled = false;
+
+      // 防御层 3：safeRemoveTab 包装，移除前再次校验不是 sender tab
+      const safeRemoveTab = () => {
+        if (senderTabId && newTab.id === senderTabId) {
+          console.error('[CVFilterX] safeRemoveTab: blocked removal of sender tab');
+          return;
+        }
+        chrome.tabs.remove(newTab.id).catch(() => {});
+      };
 
       const cleanup = () => {
         chrome.tabs.onUpdated.removeListener(listener);
-        chrome.tabs.remove(newTab.id).catch(() => {});
+        safeRemoveTab();
       };
 
       // 超时保护（20s）

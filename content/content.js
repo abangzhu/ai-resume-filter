@@ -64,12 +64,13 @@ async function onCandidateDetailPage() {
     return;
   }
 
-  // 手动模式：检查缓存或显示 idle
+  // 手动模式：检查缓存或显示 idle（附带当前模板信息）
+  const templateInfo = await getCurrentTemplateInfo(settings);
   const cached = await getCachedScore(talentId, settings);
   if (cached) {
     cvfx.renderOverlay('scored', { result: cached });
   } else {
-    cvfx.renderOverlay('idle');
+    cvfx.renderOverlay('idle', { templateName: templateInfo?.name });
   }
 }
 
@@ -368,12 +369,86 @@ function isFresh(ts, days) {
   return Date.now() - ts < days * 24 * 60 * 60 * 1000;
 }
 
+async function getCurrentTemplateInfo(settings) {
+  try {
+    const resumeData = cvfx.extractResumeData(settings.fieldConfig);
+    const jobId = resumeData.jobId;
+
+    // 优先查 jobTemplates 绑定
+    if (jobId) {
+      const jtRes = await chrome.runtime.sendMessage({ type: 'GET_JOB_TEMPLATE', jobId });
+      if (jtRes?.ok && jtRes.jobTemplate) {
+        const tplRes = await chrome.runtime.sendMessage({ type: 'GET_TEMPLATES' });
+        if (tplRes?.ok) {
+          const tpl = tplRes.templates[jtRes.jobTemplate.templateId];
+          if (tpl) return { id: tpl.id, name: tpl.name };
+        }
+      }
+    }
+
+    // 尝试 MATCH_TEMPLATE
+    const jobTitle = document.querySelector(cvfx.SELECTORS.candidate.jobInfo)?.innerText?.split('\n')[0] || '';
+    if (jobTitle) {
+      const matchRes = await chrome.runtime.sendMessage({ type: 'MATCH_TEMPLATE', jobTitle });
+      if (matchRes?.ok && matchRes.template) {
+        return { id: matchRes.template.id, name: `${matchRes.template.name}（推荐）` };
+      }
+    }
+
+    // 兜底：默认模板
+    const tplRes = await chrome.runtime.sendMessage({ type: 'GET_TEMPLATES' });
+    if (tplRes?.ok) {
+      const tplList = Object.values(tplRes.templates);
+      const defaultTpl = tplList.find(t => t.isDefault) || tplList[0];
+      if (defaultTpl) return { id: defaultTpl.id, name: defaultTpl.name };
+    }
+  } catch (e) {
+    console.warn('[CVFilterX] 获取模板信息失败:', e.message);
+  }
+  return null;
+}
+
 // ── 事件监听 ──────────────────────────────────────────────────
 
 // 浮层「开始评分」按钮
 document.addEventListener('cvfx:score-request', async () => {
   const settings = await getSettings();
   await scoreCandidate(settings, null, null);
+});
+
+// 浮层「切换模板」按钮
+document.addEventListener('cvfx:switch-template', async () => {
+  const tplRes = await chrome.runtime.sendMessage({ type: 'GET_TEMPLATES' });
+  if (!tplRes?.ok) return;
+
+  const templates = tplRes.templates;
+  const tplList = Object.values(templates);
+  if (tplList.length === 0) return;
+
+  const jobTitle = document.querySelector(cvfx.SELECTORS.candidate.jobInfo)?.innerText?.split('\n')[0] || '';
+  let suggested = null;
+  if (jobTitle) {
+    const matchRes = await chrome.runtime.sendMessage({ type: 'MATCH_TEMPLATE', jobTitle });
+    if (matchRes?.ok && matchRes.template) suggested = matchRes.template;
+  }
+
+  const chosen = await showTemplateDialog(jobTitle, tplList, suggested);
+  if (!chosen) return;
+
+  // 保存 jobTemplate 绑定
+  const settings = await getSettings();
+  const resumeData = cvfx.extractResumeData(settings.fieldConfig);
+  if (resumeData.jobId) {
+    await chrome.runtime.sendMessage({
+      type: 'SET_JOB_TEMPLATE',
+      jobId: resumeData.jobId,
+      templateId: chosen,
+    });
+  }
+
+  // 重新渲染 overlay 为 idle，显示新模板名
+  const newTpl = templates[chosen];
+  cvfx.renderOverlay('idle', { templateName: newTpl?.name });
 });
 
 // Popup / Background 消息
@@ -397,6 +472,21 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
       const links = cvfx.collectCandidateLinks?.() ?? [];
       sendResponse({ count: links.length });
       break;
+    }
+
+    case 'SCORE_CURRENT': {
+      getSettings().then(settings => {
+        scoreCandidate(settings, msg.templateId || null, null);
+      });
+      sendResponse({ ok: true });
+      return true;
+    }
+
+    case 'TEMPLATE_CHANGED': {
+      const tplName = msg.templateName || null;
+      cvfx.renderOverlay('idle', { templateName: tplName });
+      sendResponse({ ok: true });
+      return true;
     }
   }
 });

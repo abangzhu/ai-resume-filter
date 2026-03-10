@@ -80,16 +80,22 @@ function buildBody(state, payload) {
   if (overlayCollapsed) return '';
 
   switch (state) {
-    case 'idle':
-      return `<div class="cvfx-hint">点击「开始评分」对当前候选人评分</div>`;
+    case 'idle': {
+      const tplHtml = payload.templateName
+        ? `<div class="cvfx-template-info">当前模板：${escHtml(payload.templateName)} <a class="cvfx-tpl-switch" id="cvfx-btn-switch-tpl">切换</a></div>`
+        : '';
+      return `${tplHtml}<div class="cvfx-hint">点击「开始评分」对当前候选人评分</div>`;
+    }
 
     case 'loading':
       return `<div class="cvfx-hint">正在调用 LLM 评估中，请稍候...</div>`;
 
-    case 'error':
-      return `
-        <div class="cvfx-error">${escHtml(payload.error ?? '未知错误')}</div>
-      `;
+    case 'error': {
+      const errTplHtml = payload.templateName
+        ? `<div class="cvfx-template-info">当前模板：${escHtml(payload.templateName)} <a class="cvfx-tpl-switch" id="cvfx-btn-switch-tpl">切换</a></div>`
+        : '';
+      return `${errTplHtml}<div class="cvfx-error">${escHtml(payload.error ?? '未知错误')}</div>`;
+    }
 
     case 'scored':
       return buildScoredBody(payload.result);
@@ -106,7 +112,7 @@ function buildScoredBody(result) {
 
   // 模板名称
   const templateHtml = result.templateName
-    ? `<div class="cvfx-template-info">使用模板：${escHtml(result.templateName)}</div>`
+    ? `<div class="cvfx-template-info">使用模板：${escHtml(result.templateName)} <a class="cvfx-tpl-switch" id="cvfx-btn-switch-tpl">切换</a></div>`
     : '';
 
   // 动态渲染维度：从 result.dimensions 中遍历所有 key
@@ -199,6 +205,12 @@ function bindEvents(el) {
     e.stopPropagation();
     // 触发评分，由 content.js 监听
     document.dispatchEvent(new CustomEvent('cvfx:score-request'));
+  });
+
+  el.querySelector('#cvfx-btn-switch-tpl')?.addEventListener('click', e => {
+    e.stopPropagation();
+    e.preventDefault();
+    document.dispatchEvent(new CustomEvent('cvfx:switch-template'));
   });
 }
 
