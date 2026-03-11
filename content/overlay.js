@@ -206,7 +206,7 @@ function buildHTML(state, payload = {}) {
     <div id="cvfx-body">
       ${buildBody(state, payload)}
     </div>
-    ${buildFooter(state)}
+    ${buildFooter(state, payload)}
   `;
 }
 
@@ -339,12 +339,13 @@ function buildScoredBody(result) {
   `;
 }
 
-function buildFooter(state) {
+function buildFooter(state, payload = {}) {
   if (overlayCollapsed) return '';
 
-  const rescore = state === 'scored' || state === 'error'
-    ? `<button class="cvfx-btn primary" data-action="score">重新评分</button>`
-    : `<button class="cvfx-btn primary" data-action="score">开始评分</button>`;
+  const notReady = state === 'idle' && !window.__cvfx.pageReady;
+  const btnText = notReady ? '页面加载中...' : (state === 'scored' || state === 'error' ? '重新评分' : '开始评分');
+  const disabled = notReady ? ' disabled' : '';
+  const rescore = `<button class="cvfx-btn primary" data-action="score"${disabled}>${btnText}</button>`;
 
   const toggle = `<button class="cvfx-btn" data-action="collapse">收起</button>`;
 

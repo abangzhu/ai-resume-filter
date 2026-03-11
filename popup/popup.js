@@ -6,6 +6,7 @@ const $ = id => document.getElementById(id);
 
 let currentJobId = null;
 let selectedTemplateId = null;
+let pageReadyPollId = null;
 
 // ── 初始化 ────────────────────────────────────────────────────
 async function init() {
@@ -34,11 +35,13 @@ async function init() {
 // ── 读取页面信息 ──────────────────────────────────────────────
 async function loadPageInfo(tab) {
   let pageType = 'unknown';
+  let pageReady = false;
   let candidateCount = 0;
 
   try {
     const res = await chrome.tabs.sendMessage(tab.id, { type: 'GET_PAGE_TYPE' });
     pageType = res?.pageType || 'unknown';
+    pageReady = res?.pageReady === true;
   } catch { /* content script 未就绪 */ }
 
   if (pageType === 'candidate_list') {
@@ -47,12 +50,66 @@ async function loadPageInfo(tab) {
       candidateCount = res?.count || 0;
     } catch {}
     $('candidate-count').textContent = `${candidateCount} 人`;
-    $('btn-start').disabled = candidateCount === 0;
+    $('btn-start').disabled = candidateCount === 0 || !pageReady;
   } else {
     // 非列表页（候选人详情 / hire_other / unknown）：显示单候选人评分按钮
     $('candidate-count').textContent = '详情页';
     $('btn-start').style.display = 'none';
     $('btn-score-current').style.display = '';
+    $('btn-score-current').disabled = !pageReady;
+  }
+
+  // 页面未就绪时：显示加载文案 + 轮询等待就绪
+  if (pageReadyPollId) { clearInterval(pageReadyPollId); pageReadyPollId = null; }
+  if (!pageReady && (pageType === 'candidate_list' || pageType === 'candidate_detail')) {
+    const btnStart = $('btn-start');
+    const btnScore = $('btn-score-current');
+    const origStartText = btnStart.textContent;
+    const origScoreText = btnScore.textContent;
+
+    if (pageType === 'candidate_list') {
+      btnStart.textContent = '页面加载中...';
+    } else {
+      btnScore.textContent = '页面加载中...';
+    }
+
+    const pollStart = Date.now();
+    pageReadyPollId = setInterval(async () => {
+      const elapsed = Date.now() - pollStart;
+      try {
+        const r = await chrome.tabs.sendMessage(tab.id, { type: 'GET_PAGE_TYPE' });
+        if (r?.pageReady) {
+          clearInterval(pageReadyPollId);
+          pageReadyPollId = null;
+          if (pageType === 'candidate_list') {
+            try {
+              const countRes = await chrome.tabs.sendMessage(tab.id, { type: 'GET_CANDIDATE_COUNT' });
+              candidateCount = countRes?.count || 0;
+            } catch { /* ignore */ }
+            $('candidate-count').textContent = `${candidateCount} 人`;
+            btnStart.textContent = origStartText;
+            btnStart.disabled = candidateCount === 0;
+          } else {
+            btnScore.textContent = origScoreText;
+            btnScore.disabled = false;
+          }
+          return;
+        }
+      } catch { /* ignore */ }
+
+      // 超时 15s 降级启用
+      if (elapsed >= 15000) {
+        clearInterval(pageReadyPollId);
+        pageReadyPollId = null;
+        if (pageType === 'candidate_list') {
+          btnStart.textContent = origStartText;
+          btnStart.disabled = candidateCount === 0;
+        } else {
+          btnScore.textContent = origScoreText;
+          btnScore.disabled = false;
+        }
+      }
+    }, 800);
   }
 
   // 最近的 JD

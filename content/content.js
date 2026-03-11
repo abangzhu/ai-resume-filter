@@ -10,6 +10,7 @@
 const cvfx = window.__cvfx;
 
 let currentTalentId = null;
+cvfx.pageReady = false;
 
 // ── 初始化 ────────────────────────────────────────────────────
 async function init() {
@@ -38,6 +39,9 @@ async function onCandidateDetailPage() {
 
   cvfx.mountOverlay();
 
+  // 先渲染未就绪的 idle 状态
+  cvfx.pageReady = false;
+
   const settings = await cvfxGetSettings();
 
   // 批量模式
@@ -60,14 +64,21 @@ async function onCandidateDetailPage() {
     return;
   }
 
-  // 手动模式
+  // 手动模式：先显示未就绪 idle，等简历面板出现后标记就绪
   const templateInfo = await getCurrentTemplateInfo(settings);
   const cached = await cvfxGetCachedScore(talentId, settings);
   if (cached) {
     const cachedWithRank = await attachRankInfo(cached);
+    cvfx.pageReady = true;
     cvfx.renderOverlay('scored', { result: cachedWithRank });
   } else {
-    cvfx.renderOverlay('idle', { templateName: templateInfo?.name });
+    cvfx.renderOverlay('idle', { templateName: templateInfo?.name, pageReady: false });
+    // 非阻塞等待简历面板出现
+    try {
+      await cvfx.waitForElement(cvfx.SELECTORS.candidate.resumeTabContent, 8000);
+    } catch { /* 超时不阻断 */ }
+    cvfx.pageReady = true;
+    cvfx.renderOverlay('idle', { templateName: templateInfo?.name, pageReady: true });
   }
 }
 
@@ -107,6 +118,8 @@ async function onCandidateListPage() {
 
   const count = cvfx.collectCandidateLinks?.().length ?? 0;
   console.log(`[CVFilterX] 评估列表候选人数: ${count}`);
+
+  cvfx.pageReady = true;
 }
 
 // ── 事件监听 ──────────────────────────────────────────────────
@@ -167,7 +180,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
       return true;
 
     case MSG.GET_PAGE_TYPE:
-      sendResponse({ pageType: cvfx.detectPageType() });
+      sendResponse({ pageType: cvfx.detectPageType(), pageReady: cvfx.pageReady });
       break;
 
     case MSG.GET_CANDIDATE_COUNT: {
@@ -201,6 +214,7 @@ function handleRouteChange() {
   if (cur !== lastPath) {
     lastPath = cur;
     currentTalentId = null;
+    cvfx.pageReady = false;
     setTimeout(init, 400);
   }
 }
