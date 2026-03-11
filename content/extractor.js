@@ -26,6 +26,11 @@ const SELECTORS = {
     // 约 1500+ 字符，远比摘要卡片详细
     resumeTabContent:   '[class*="talentDetailTabList"]',
 
+    // 简历 PDF/Canvas 渲染区域（优先截图目标）
+    resumePdfViewer:    '[class*="talentDetailTabList"] iframe, [class*="talentDetailTabList"] canvas, [class*="talentDetailTabList"] [class*="pdfViewer"], [class*="talentDetailTabList"] embed',
+    // 当前激活的 Tab 面板（次优先截图目标）
+    resumeActivePanel:  '[class*="talentDetailTabList"] [class*="tabpanel"][aria-hidden="false"], [class*="talentDetailTabList"] [class*="tabPanel"]:not([style*="display: none"])',
+
     // 基本信息摘要区域（补充：姓名/联系方式）
     basicInfoSummary:   '[class*="basicInfoSummary"]',
     contactInfo:        '[class*="contactInfoContainer"]',

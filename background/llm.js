@@ -40,7 +40,8 @@ async function handleScoreResume(resumeData, jobData, templateId) {
   }
 
   const prompt = buildPrompt(resumeData, jobData, template);
-  const raw = await callLLM(prompt, settings, 0, resumeData.resumeImageBase64 ?? null);
+  const resumeTextLength = (resumeData.resumeText ?? '').length;
+  const raw = await callLLM(prompt, settings, 0, resumeData.resumeImageBase64 ?? null, resumeTextLength);
   const result = parseScoreResult(raw, resumeData, jobData, template, settings);
 
   await saveScore(result);
@@ -106,7 +107,7 @@ ${schema}
 ${rules}`;
 }
 
-async function callLLM(userPrompt, settings, retryCount = 0, imageBase64 = null) {
+async function callLLM(userPrompt, settings, retryCount = 0, imageBase64 = null, resumeTextLength = 0) {
   const caps = modelCaps(settings.model);
 
   const MAX_INPUT_CHARS = 80000;
@@ -116,19 +117,24 @@ async function callLLM(userPrompt, settings, retryCount = 0, imageBase64 = null)
         '\n\n[...内容已截断，请基于以上内容评分]'
       : userPrompt;
 
-  const userContent = imageBase64
-    ? [
-        {
-          type: 'text',
-          text: '候选人简历文本提取不完整，已附上简历截图，请结合图片内容进行评估。\n\n' +
-                truncatedPrompt,
-        },
-        {
-          type: 'image_url',
-          image_url: { url: `data:image/png;base64,${imageBase64}` },
-        },
-      ]
-    : truncatedPrompt;
+  let userContent;
+  if (imageBase64) {
+    const preamble = resumeTextLength > 500
+      ? '已附上简历截图作为补充参考，请以文本内容为主、结合图片进行评估。'
+      : '候选人简历文本提取不完整，已附上简历截图，请以图片内容为主进行评估。';
+    userContent = [
+      {
+        type: 'text',
+        text: preamble + '\n\n' + truncatedPrompt,
+      },
+      {
+        type: 'image_url',
+        image_url: { url: `data:image/png;base64,${imageBase64}` },
+      },
+    ];
+  } else {
+    userContent = truncatedPrompt;
+  }
 
   let response;
   try {
@@ -166,7 +172,7 @@ async function callLLM(userPrompt, settings, retryCount = 0, imageBase64 = null)
   } catch (networkErr) {
     if (retryCount < MAX_RETRIES) {
       await sleep(1000 * (retryCount + 1));
-      return callLLM(userPrompt, settings, retryCount + 1, imageBase64);
+      return callLLM(userPrompt, settings, retryCount + 1, imageBase64, resumeTextLength);
     }
     throw new Error(
       `网络请求失败（已重试 ${retryCount} 次）：${networkErr.message}`,
@@ -177,14 +183,14 @@ async function callLLM(userPrompt, settings, retryCount = 0, imageBase64 = null)
     const retryAfter =
       parseInt(response.headers.get('Retry-After') ?? '0') || 5;
     await sleep(Math.min(retryAfter, 30) * 1000);
-    return callLLM(userPrompt, settings, retryCount + 1, imageBase64);
+    return callLLM(userPrompt, settings, retryCount + 1, imageBase64, resumeTextLength);
   }
 
   if (!response.ok) {
     const body = await response.text().catch(() => '');
     if (RETRYABLE_STATUS.has(response.status) && retryCount < MAX_RETRIES) {
       await sleep(1500 * (retryCount + 1));
-      return callLLM(userPrompt, settings, retryCount + 1, imageBase64);
+      return callLLM(userPrompt, settings, retryCount + 1, imageBase64, resumeTextLength);
     }
     let errMsg = `HTTP ${response.status}`;
     try {
@@ -314,5 +320,6 @@ function parseScoreResult(raw, resumeData, jobData, template, settings) {
     promptVersion: 'v2-template',
     templateId: template.id,
     templateName: template.name,
+    resumeSource: resumeData.resumeSource ?? null,
   };
 }

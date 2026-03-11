@@ -261,6 +261,15 @@ function buildBody(state, payload) {
   }
 }
 
+function buildSourceLabel(source) {
+  if (!source) return '';
+  const parts = [];
+  if (source.hasText) parts.push(`DOM 文本 (${source.textLength} 字)`);
+  if (source.hasImage) parts.push('截图');
+  if (parts.length === 0) return '';
+  return `<div class="cvfx-source-info">来源：${escHtml(parts.join(' + '))}</div>`;
+}
+
 function buildScoredBody(result) {
   if (!result) return '<div class="cvfx-hint">评分数据缺失</div>';
 
@@ -269,6 +278,8 @@ function buildScoredBody(result) {
   const templateHtml = result.templateName
     ? `<div class="cvfx-template-info">使用模板：${escHtml(result.templateName)} <a class="cvfx-tpl-switch" data-action="switch-tpl">切换</a></div>`
     : '';
+
+  const sourceHtml = buildSourceLabel(result.resumeSource);
 
   const dimensionKeys = Object.keys(result.dimensions ?? {});
   const dimsHtml = dimensionKeys.map(key => {
@@ -307,6 +318,7 @@ function buildScoredBody(result) {
 
   return `
     ${templateHtml}
+    ${sourceHtml}
     <div class="cvfx-score-row">
       <span class="cvfx-score-label">综合评分</span>
       <span style="display:flex;align-items:baseline;gap:2px">

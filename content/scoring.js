@@ -72,25 +72,32 @@ async function scoreCandidate(settings, explicitTemplateId, afterScore) {
 
   try {
     const resumeData = cvfx.extractResumeData(settings.fieldConfig);
+    const textLength = (resumeData.resumeText ?? '').length;
 
-    // 图片 fallback：不可变模式
-    if ((resumeData.resumeText ?? '').length < 100) {
-      try {
-        const imageBase64 = await cvfxCaptureResumeImage();
-        if (imageBase64) {
-          resumeData.resumeImageBase64 = imageBase64;
-          console.log('[CVFilterX] 简历文本不足，已截图作为 fallback');
-        }
-      } catch (e) {
-        console.warn('[CVFilterX] 简历截图失败:', e.message);
-      }
+    // 始终尝试截图（不再依赖文本长度阈值）
+    let imageBase64 = null;
+    try {
+      imageBase64 = await cvfxCaptureResumeImage();
+    } catch (e) {
+      console.warn('[CVFilterX] 简历截图失败:', e.message);
     }
 
-    const jobData = await cvfxGetJobData(resumeData.jobId);
+    // 不可变：构建带截图和来源元数据的 enrichedResumeData
+    const enrichedResumeData = {
+      ...resumeData,
+      ...(imageBase64 ? { resumeImageBase64: imageBase64 } : {}),
+      resumeSource: {
+        hasText: textLength > 0,
+        textLength,
+        hasImage: !!imageBase64,
+      },
+    };
 
-    const candidateId = resumeData.candidateId;
+    const jobData = await cvfxGetJobData(enrichedResumeData.jobId);
+
+    const candidateId = enrichedResumeData.candidateId;
     const response = await withScoringTimeout(
-      sendMsg(MSG.SCORE_RESUME, { resumeData, jobData, templateId }),
+      sendMsg(MSG.SCORE_RESUME, { resumeData: enrichedResumeData, jobData, templateId }),
       candidateId, settings
     );
 
@@ -107,14 +114,32 @@ async function scoreCandidate(settings, explicitTemplateId, afterScore) {
 
 async function cvfxCaptureResumeImage() {
   const cvfx = window.__cvfx;
-  const sel = cvfx.SELECTORS.candidate.resumeTabContent;
-  const el = document.querySelector(sel);
-  if (!el) return null;
+  const sel = cvfx.SELECTORS.candidate;
+  const MIN_SIZE = 50;
 
-  el.scrollIntoView({ behavior: 'instant', block: 'nearest' });
+  // 优先级级联：PDF viewer > active panel > tab container
+  const candidates = [
+    sel.resumePdfViewer,
+    sel.resumeActivePanel,
+    sel.resumeTabContent,
+  ];
+
+  let target = null;
+  for (const selector of candidates) {
+    const el = document.querySelector(selector);
+    if (!el) continue;
+    const r = el.getBoundingClientRect();
+    if (r.width >= MIN_SIZE && r.height >= MIN_SIZE) {
+      target = el;
+      break;
+    }
+  }
+  if (!target) return null;
+
+  target.scrollIntoView({ behavior: 'instant', block: 'nearest' });
   await new Promise(r => setTimeout(r, 400));
 
-  const rect = el.getBoundingClientRect();
+  const rect = target.getBoundingClientRect();
   const dpr = window.devicePixelRatio || 1;
 
   const res = await sendMsg(MSG.CAPTURE_RESUME_IMAGE, {

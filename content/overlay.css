@@ -242,6 +242,13 @@
 }
 .cvfx-tpl-switch:hover { text-decoration: underline; }
 
+/* ── Source info ──────────────────────────────────────────────── */
+.cvfx-source-info {
+  font-size: 11px;
+  color: var(--cvfx-text-faint);
+  margin-bottom: 6px;
+}
+
 /* ── Draggable header ─────────────────────────────────────────── */
 #cvfx-header.cvfx-dragging {
   cursor: grabbing;
