@@ -1,6 +1,7 @@
 /**
  * CVFilterX - 评分浮层组件
  * 注入到飞书招聘候选人详情页，展示评分状态和结果
+ * Uses event delegation — events are bound once at mount, not on each render.
  */
 
 const OVERLAY_ID = 'cvfx-overlay';
@@ -11,26 +12,150 @@ const BADGE_MAP = {
   reject: { icon: 'NO', text: '淘汰' },
 };
 
-// ── 状态机 ───────────────────────────────────────────────────
-// 'idle' | 'loading' | 'scored' | 'error'
+// ── 状态 ────────────────────────────────────────────────────
 let overlayState = 'idle';
 let overlayPayload = {};
 let overlayCollapsed = false;
+let loadingTimerId = null;
+let loadingStartTime = 0;
 
 // ── 挂载 / 卸载 ──────────────────────────────────────────────
-function mountOverlay() {
+async function mountOverlay() {
   if (document.getElementById(OVERLAY_ID)) return;
 
   const el = document.createElement('div');
   el.id = OVERLAY_ID;
   el.innerHTML = buildHTML('idle');
-  document.body.appendChild(el);
 
-  bindEvents(el);
+  // 读取保存的位置
+  let pos = { top: 16, right: 16 };
+  try {
+    const data = await chrome.storage.local.get('overlayPosition');
+    if (data.overlayPosition) pos = data.overlayPosition;
+  } catch { /* use default */ }
+
+  el.style.top = `${pos.top}px`;
+  el.style.right = `${pos.right}px`;
+
+  document.body.appendChild(el);
+  initOverlayEvents(el);
 }
 
 function unmountOverlay() {
-  document.getElementById(OVERLAY_ID)?.remove();
+  stopLoadingTimer();
+  const el = document.getElementById(OVERLAY_ID);
+  if (el?.__cvfxCleanup) el.__cvfxCleanup();
+  el?.remove();
+}
+
+// ── 事件委托（只在 mount 时绑定一次）─────────────────────────
+function initOverlayEvents(el) {
+  // ── 拖拽逻辑 ────────────────────────────────────────────────
+  let dragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let dragStartTop = 0;
+  let dragStartRight = 0;
+  let hasMoved = false;
+
+  const onMouseDown = (e) => {
+    if (!e.target.closest('#cvfx-header')) return;
+    dragging = true;
+    hasMoved = false;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    dragStartTop = parseInt(el.style.top) || 16;
+    dragStartRight = parseInt(el.style.right) || 16;
+    el.querySelector('#cvfx-header')?.classList.add('cvfx-dragging');
+    e.preventDefault();
+  };
+
+  const onMouseMove = (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - dragStartX;
+    const dy = e.clientY - dragStartY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) hasMoved = true;
+
+    let newTop = dragStartTop + dy;
+    let newRight = dragStartRight - dx;
+
+    // 边界检测
+    const maxTop = window.innerHeight - 60;
+    const maxRight = window.innerWidth - 60;
+    newTop = Math.max(0, Math.min(newTop, maxTop));
+    newRight = Math.max(0, Math.min(newRight, maxRight));
+
+    el.style.top = `${newTop}px`;
+    el.style.right = `${newRight}px`;
+  };
+
+  const onMouseUp = () => {
+    if (!dragging) return;
+    dragging = false;
+    el.querySelector('#cvfx-header')?.classList.remove('cvfx-dragging');
+
+    if (hasMoved) {
+      const pos = {
+        top: parseInt(el.style.top) || 16,
+        right: parseInt(el.style.right) || 16,
+      };
+      chrome.storage.local.set({ overlayPosition: pos }).catch(() => {});
+    }
+  };
+
+  el.addEventListener('mousedown', onMouseDown);
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+
+  // cleanup 函数，在 unmount 时调用
+  el.__cvfxCleanup = () => {
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  };
+
+  // ── 点击事件委托 ──────────────────────────────────────────────
+  el.addEventListener('click', (e) => {
+    // 拖拽后不触发点击
+    if (hasMoved) { hasMoved = false; return; }
+
+    const target = e.target.closest('[data-action]');
+
+    // 展开已折叠的面板
+    if (!target && overlayCollapsed && e.target.closest('#cvfx-header')) {
+      overlayCollapsed = false;
+      el.classList.remove('collapsed');
+      el.innerHTML = buildHTML(overlayState, overlayPayload);
+      return;
+    }
+
+    if (!target) return;
+
+    const action = target.dataset.action;
+    e.stopPropagation();
+
+    switch (action) {
+      case 'collapse':
+        overlayCollapsed = true;
+        el.classList.add('collapsed');
+        el.innerHTML = buildHTML(overlayState, overlayPayload);
+        break;
+
+      case 'score':
+        document.dispatchEvent(new CustomEvent('cvfx:score-request'));
+        break;
+
+      case 'switch-tpl':
+        e.preventDefault();
+        document.dispatchEvent(new CustomEvent('cvfx:switch-template'));
+        break;
+
+      case 'toggle-dim': {
+        const row = target.closest('.cvfx-dim-row');
+        if (row) row.classList.toggle('expanded');
+        break;
+      }
+    }
+  });
 }
 
 // ── 渲染 ─────────────────────────────────────────────────────
@@ -42,8 +167,37 @@ function renderOverlay(state, payload = {}) {
   overlayPayload = payload;
   el.className = overlayCollapsed ? 'collapsed' : '';
 
+  // 计时器管理
+  if (state === 'loading') {
+    startLoadingTimer(el);
+  } else {
+    stopLoadingTimer();
+  }
+
   el.innerHTML = buildHTML(state, payload);
-  bindEvents(el);
+}
+
+function startLoadingTimer(el) {
+  stopLoadingTimer();
+  loadingStartTime = Date.now();
+  loadingTimerId = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - loadingStartTime) / 1000);
+    const timerEl = el.querySelector('.cvfx-timer');
+    if (timerEl) {
+      timerEl.textContent = `已用时 ${elapsed}s`;
+    }
+    const slowEl = el.querySelector('.cvfx-timer-slow');
+    if (slowEl) {
+      slowEl.style.display = elapsed >= 15 ? '' : 'none';
+    }
+  }, 1000);
+}
+
+function stopLoadingTimer() {
+  if (loadingTimerId) {
+    clearInterval(loadingTimerId);
+    loadingTimerId = null;
+  }
 }
 
 function buildHTML(state, payload = {}) {
@@ -82,17 +236,19 @@ function buildBody(state, payload) {
   switch (state) {
     case 'idle': {
       const tplHtml = payload.templateName
-        ? `<div class="cvfx-template-info">当前模板：${escHtml(payload.templateName)} <a class="cvfx-tpl-switch" id="cvfx-btn-switch-tpl">切换</a></div>`
+        ? `<div class="cvfx-template-info">当前模板：${escHtml(payload.templateName)} <a class="cvfx-tpl-switch" data-action="switch-tpl">切换</a></div>`
         : '';
       return `${tplHtml}<div class="cvfx-hint">点击「开始评分」对当前候选人评分</div>`;
     }
 
     case 'loading':
-      return `<div class="cvfx-hint">正在调用 LLM 评估中，请稍候...</div>`;
+      return `<div class="cvfx-hint">正在调用 LLM 评估中，请稍候...</div>
+              <div class="cvfx-timer">已用时 0s</div>
+              <div class="cvfx-timer-slow" style="display:none">模型响应较慢，请耐心等待</div>`;
 
     case 'error': {
       const errTplHtml = payload.templateName
-        ? `<div class="cvfx-template-info">当前模板：${escHtml(payload.templateName)} <a class="cvfx-tpl-switch" id="cvfx-btn-switch-tpl">切换</a></div>`
+        ? `<div class="cvfx-template-info">当前模板：${escHtml(payload.templateName)} <a class="cvfx-tpl-switch" data-action="switch-tpl">切换</a></div>`
         : '';
       return `${errTplHtml}<div class="cvfx-error">${escHtml(payload.error ?? '未知错误')}</div>`;
     }
@@ -110,26 +266,26 @@ function buildScoredBody(result) {
 
   const badge = BADGE_MAP[result.recommendation] ?? BADGE_MAP.hold;
 
-  // 模板名称
   const templateHtml = result.templateName
-    ? `<div class="cvfx-template-info">使用模板：${escHtml(result.templateName)} <a class="cvfx-tpl-switch" id="cvfx-btn-switch-tpl">切换</a></div>`
+    ? `<div class="cvfx-template-info">使用模板：${escHtml(result.templateName)} <a class="cvfx-tpl-switch" data-action="switch-tpl">切换</a></div>`
     : '';
 
-  // 动态渲染维度：从 result.dimensions 中遍历所有 key
   const dimensionKeys = Object.keys(result.dimensions ?? {});
   const dimsHtml = dimensionKeys.map(key => {
     const d = result.dimensions[key];
     if (!d || typeof d.score !== 'number') return '';
     const pct = Math.round((d.score / 10) * 100);
-    // 尝试从 key 生成可读 label，fallback 到 key 本身
     const label = d.label || key;
+    const hasComment = d.comment && d.comment.trim();
     return `
-      <div class="cvfx-dim-row" title="${escHtml(d.comment ?? '')}">
+      <div class="cvfx-dim-row" data-action="${hasComment ? 'toggle-dim' : ''}">
         <span class="cvfx-dim-label">${escHtml(label)}</span>
         <div class="cvfx-dim-bar-wrap">
           <div class="cvfx-dim-bar" style="width:${pct}%"></div>
         </div>
         <span class="cvfx-dim-score">${d.score}/10</span>
+        ${hasComment ? '<span class="cvfx-dim-chevron">&#9654;</span>' : ''}
+        ${hasComment ? `<div class="cvfx-dim-comment">${escHtml(d.comment)}</div>` : ''}
       </div>
     `;
   }).join('');
@@ -162,6 +318,7 @@ function buildScoredBody(result) {
       <span class="cvfx-score-label">推荐建议</span>
       <span class="cvfx-badge ${result.recommendation}">${badge.icon} ${badge.text}</span>
     </div>
+    ${result.rankInfo ? `<div class="cvfx-rank-info">${escHtml(result.rankInfo)}</div>` : ''}
 
     ${dimsHtml ? `<div class="cvfx-divider"></div>${dimsHtml}` : ''}
     ${highlightsHtml ? `<div class="cvfx-divider"></div>${highlightsHtml}` : ''}
@@ -174,53 +331,12 @@ function buildFooter(state) {
   if (overlayCollapsed) return '';
 
   const rescore = state === 'scored' || state === 'error'
-    ? `<button class="cvfx-btn primary" id="cvfx-btn-score">重新评分</button>`
-    : `<button class="cvfx-btn primary" id="cvfx-btn-score">开始评分</button>`;
+    ? `<button class="cvfx-btn primary" data-action="score">重新评分</button>`
+    : `<button class="cvfx-btn primary" data-action="score">开始评分</button>`;
 
-  const toggle = `<button class="cvfx-btn" id="cvfx-btn-collapse">收起</button>`;
+  const toggle = `<button class="cvfx-btn" data-action="collapse">收起</button>`;
 
   return `<div id="cvfx-footer">${toggle}${state !== 'loading' ? rescore : ''}</div>`;
-}
-
-// ── 事件绑定 ─────────────────────────────────────────────────
-function bindEvents(el) {
-  el.querySelector('#cvfx-btn-collapse')?.addEventListener('click', e => {
-    e.stopPropagation();
-    overlayCollapsed = true;
-    el.classList.add('collapsed');
-    el.innerHTML = buildHTML(overlayState, overlayPayload);
-    bindEvents(el);
-  });
-
-  el.querySelector('#cvfx-header')?.addEventListener('click', () => {
-    if (overlayCollapsed) {
-      overlayCollapsed = false;
-      el.classList.remove('collapsed');
-      el.innerHTML = buildHTML(overlayState, overlayPayload);
-      bindEvents(el);
-    }
-  });
-
-  el.querySelector('#cvfx-btn-score')?.addEventListener('click', e => {
-    e.stopPropagation();
-    // 触发评分，由 content.js 监听
-    document.dispatchEvent(new CustomEvent('cvfx:score-request'));
-  });
-
-  el.querySelector('#cvfx-btn-switch-tpl')?.addEventListener('click', e => {
-    e.stopPropagation();
-    e.preventDefault();
-    document.dispatchEvent(new CustomEvent('cvfx:switch-template'));
-  });
-}
-
-// ── 工具 ─────────────────────────────────────────────────────
-function escHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
 }
 
 // ── 导出 ─────────────────────────────────────────────────────

@@ -75,8 +75,9 @@ async function loadPageInfo(tab) {
 
 // ── 模板选择 ──────────────────────────────────────────────────
 async function loadTemplateSelection(pageType, candidateCount) {
-  const tplRes = await chrome.runtime.sendMessage({ type: 'GET_TEMPLATES' });
-  if (!tplRes?.ok) return;
+  let tplRes;
+  try { tplRes = await sendMsg(MSG.GET_TEMPLATES); }
+  catch { return; }
 
   const templates = tplRes.templates;
   const tplList = Object.values(templates);
@@ -85,10 +86,10 @@ async function loadTemplateSelection(pageType, candidateCount) {
   // 查询当前 job 已绑定的模板
   let jobTemplate = null;
   if (currentJobId) {
-    const jtRes = await chrome.runtime.sendMessage({ type: 'GET_JOB_TEMPLATE', jobId: currentJobId });
-    if (jtRes?.ok && jtRes.jobTemplate) {
-      jobTemplate = jtRes.jobTemplate;
-    }
+    try {
+      const jtRes = await sendMsg(MSG.GET_JOB_TEMPLATE, { jobId: currentJobId });
+      if (jtRes?.jobTemplate) jobTemplate = jtRes.jobTemplate;
+    } catch { /* ignore */ }
   }
 
   // 如果已有关联模板，显示名称
@@ -99,8 +100,8 @@ async function loadTemplateSelection(pageType, candidateCount) {
     // 尝试自动匹配
     const jobTitle = $('job-title').textContent;
     if (jobTitle && jobTitle !== '--') {
-      const matchRes = await chrome.runtime.sendMessage({ type: 'MATCH_TEMPLATE', jobTitle });
-      if (matchRes?.ok && matchRes.template) {
+      const matchRes = await sendMsg(MSG.MATCH_TEMPLATE, { jobTitle });
+      if (matchRes?.template) {
         selectedTemplateId = matchRes.template.id;
         $('template-name').textContent = `${matchRes.template.name}（推荐）`;
       } else {
@@ -122,8 +123,8 @@ async function loadTemplateSelection(pageType, candidateCount) {
     const select = $('template-select');
     select.innerHTML = tplList.map(t => {
       const selected = t.id === selectedTemplateId ? ' selected' : '';
-      const label = t.isDefault ? `${t.name}（默认）` : t.name;
-      return `<option value="${t.id}"${selected}>${label}</option>`;
+      const label = t.isDefault ? `${escHtml(t.name)}（默认）` : escHtml(t.name);
+      return `<option value="${escHtml(t.id)}"${selected}>${label}</option>`;
     }).join('');
 
     select.addEventListener('change', async () => {
@@ -131,11 +132,7 @@ async function loadTemplateSelection(pageType, candidateCount) {
       const tpl = templates[selectedTemplateId];
       $('template-name').textContent = tpl?.name || '--';
       if (currentJobId) {
-        await chrome.runtime.sendMessage({
-          type: 'SET_JOB_TEMPLATE',
-          jobId: currentJobId,
-          templateId: selectedTemplateId,
-        });
+        await sendMsg(MSG.SET_JOB_TEMPLATE, { jobId: currentJobId, templateId: selectedTemplateId });
       }
       // 候选人详情页：通知 content script 同步 overlay
       if (pageType === 'candidate_detail') {
@@ -196,13 +193,13 @@ async function loadStats() {
 }
 
 async function getSettings() {
-  const res = await chrome.runtime.sendMessage({ type: 'GET_SETTINGS' });
+  const res = await sendMsg(MSG.GET_SETTINGS);
   return res?.settings ?? {};
 }
 
 // ── 监听后台进度推送 ──────────────────────────────────────────
 chrome.runtime.onMessage.addListener((msg) => {
-  if (msg.type === 'TASK_PROGRESS') {
+  if (msg.type === MSG.TASK_PROGRESS) {
     showProgress(msg.state);
     if (!msg.state.isRunning) {
       $('btn-start').style.display = '';
@@ -210,7 +207,7 @@ chrome.runtime.onMessage.addListener((msg) => {
     }
     loadStats();
   }
-  if (msg.type === 'SCORE_RESULT') {
+  if (msg.type === MSG.SCORE_RESULT) {
     loadStats();
     // 评分完成后重新启用单候选人评分按钮
     const btnScore = $('btn-score-current');
@@ -225,29 +222,22 @@ $('link-settings')?.addEventListener('click', e => { e.preventDefault(); chrome.
 $('btn-start').addEventListener('click', async () => {
   // 确保已选择模板
   if (!selectedTemplateId) {
-    alert('请先选择评分模板');
+    showToast('请先选择评分模板', 'warning');
     return;
   }
 
   // 保存关联
   if (currentJobId) {
-    await chrome.runtime.sendMessage({
-      type: 'SET_JOB_TEMPLATE',
-      jobId: currentJobId,
-      templateId: selectedTemplateId,
-    });
+    await sendMsg(MSG.SET_JOB_TEMPLATE, { jobId: currentJobId, templateId: selectedTemplateId });
   }
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (!tab) return;
   $('btn-start').disabled = true;
   try {
-    const res = await chrome.tabs.sendMessage(tab.id, {
-      type: 'START_BATCH',
-      templateId: selectedTemplateId,
-    });
+    const res = await sendTabMsg(tab.id, MSG.START_BATCH, { templateId: selectedTemplateId });
     if (!res?.ok) {
-      alert(res?.error || '启动失败，请确认在评估列表页');
+      showToast(res?.error || '启动失败，请确认在评估列表页', 'error');
       $('btn-start').disabled = false;
       return;
     }
@@ -255,24 +245,20 @@ $('btn-start').addEventListener('click', async () => {
     $('btn-stop').style.display  = '';
     $('progress-area').style.display = 'block';
   } catch (e) {
-    alert('无法连接到页面，请刷新后重试');
+    showToast('无法连接到页面，请刷新后重试', 'error');
     $('btn-start').disabled = false;
   }
 });
 
 $('btn-score-current').addEventListener('click', async () => {
   if (!selectedTemplateId) {
-    alert('请先选择评分模板');
+    showToast('请先选择评分模板', 'warning');
     return;
   }
 
   // 保存 jobTemplate 绑定
   if (currentJobId) {
-    await chrome.runtime.sendMessage({
-      type: 'SET_JOB_TEMPLATE',
-      jobId: currentJobId,
-      templateId: selectedTemplateId,
-    });
+    await sendMsg(MSG.SET_JOB_TEMPLATE, { jobId: currentJobId, templateId: selectedTemplateId });
   }
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -280,17 +266,14 @@ $('btn-score-current').addEventListener('click', async () => {
 
   $('btn-score-current').disabled = true;
   try {
-    const res = await chrome.tabs.sendMessage(tab.id, {
-      type: 'SCORE_CURRENT',
-      templateId: selectedTemplateId,
-    });
+    const res = await sendTabMsg(tab.id, MSG.SCORE_CURRENT, { templateId: selectedTemplateId });
     if (!res?.ok) {
-      alert(res?.error || '评分启动失败');
+      showToast(res?.error || '评分启动失败', 'error');
       $('btn-score-current').disabled = false;
     }
     // 评分进行中，按钮保持禁用；SCORE_RESULT 消息到达后刷新统计
   } catch {
-    alert('无法连接到页面，请刷新后重试');
+    showToast('无法连接到页面，请刷新后重试', 'error');
     $('btn-score-current').disabled = false;
   }
 });
@@ -298,12 +281,11 @@ $('btn-score-current').addEventListener('click', async () => {
 $('btn-stop').addEventListener('click', async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (tab) {
-    await chrome.tabs.sendMessage(tab.id, { type: 'STOP_BATCH' }).catch(() => {});
+    await sendTabMsg(tab.id, MSG.STOP_BATCH).catch(() => {});
   }
   const d = await chrome.storage.local.get('taskState');
   if (d.taskState) {
-    d.taskState.isRunning = false;
-    await chrome.storage.local.set({ taskState: d.taskState });
+    await chrome.storage.local.set({ taskState: { ...d.taskState, isRunning: false } });
   }
   $('btn-stop').style.display  = 'none';
   $('btn-start').style.display = '';
@@ -321,7 +303,7 @@ $('btn-clear').addEventListener('click', async () => {
 $('btn-export').addEventListener('click', async () => {
   const data = await chrome.storage.local.get('scores');
   const scores = Object.values(data.scores ?? {});
-  if (scores.length === 0) { alert('暂无评分记录'); return; }
+  if (scores.length === 0) { showToast('暂无评分记录', 'info'); return; }
 
   const rows = [['候选人ID','岗位ID','评分时间','推荐建议','综合分','使用模板','亮点','关注点','点评']];
   scores.forEach(s => rows.push([

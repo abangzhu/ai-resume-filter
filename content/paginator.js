@@ -20,7 +20,7 @@ async function getTaskState() {
 async function setTaskState(state) {
   await chrome.storage.local.set({ [TASK_KEY]: state });
   // 通知 Popup 刷新进度（忽略 popup 未打开的错误）
-  chrome.runtime.sendMessage({ type: 'TASK_PROGRESS', state }).catch(() => {});
+  sendMsg(MSG.TASK_PROGRESS, { state }).catch(() => {});
 }
 
 // ── 启动批量处理（在列表页调用）──────────────────────────────
@@ -54,8 +54,7 @@ async function startBatch(templateId) {
 async function stopBatch() {
   const state = await getTaskState();
   if (state) {
-    state.isRunning = false;
-    await setTaskState(state);
+    await setTaskState({ ...state, isRunning: false });
   }
   console.log('[CVFilterX] 批量已停止');
 }
@@ -65,23 +64,25 @@ async function onScoreComplete(result) {
   const state = await getTaskState();
   if (!state?.isRunning) return;
 
-  // 更新统计
+  // 更新统计（不可变）
   const rec = result?.recommendation;
-  if (rec && rec in state) state[rec]++;
+  const updated = {
+    ...state,
+    current: state.current + 1,
+    ...(rec && rec in state ? { [rec]: state[rec] + 1 } : {}),
+  };
+  await setTaskState(updated);
 
-  state.current++;
-  await setTaskState(state);
-
-  if (state.current >= state.total) {
-    await _onBatchDone(state);
+  if (updated.current >= updated.total) {
+    await _onBatchDone(updated);
     return;
   }
 
   const settings = await _getSettings();
   const delay = settings.autoPaginateDelay ?? 2000;
 
-  console.log(`[CVFilterX] ${state.current}/${state.total} 完成，${delay}ms 后进入下一位`);
-  setTimeout(() => _navigateTo(state.queue[state.current]), delay);
+  console.log(`[CVFilterX] ${updated.current}/${updated.total} 完成，${delay}ms 后进入下一位`);
+  setTimeout(() => _navigateTo(updated.queue[updated.current]), delay);
 }
 
 // ── 评分失败后的回调 ──────────────────────────────────────────
@@ -89,18 +90,21 @@ async function onScoreError(errMsg) {
   const state = await getTaskState();
   if (!state?.isRunning) return;
 
-  state.errors.push(`#${state.current + 1}: ${errMsg}`);
-  state.current++;
-  await setTaskState(state);
+  const updated = {
+    ...state,
+    errors: [...state.errors, `#${state.current + 1}: ${errMsg}`],
+    current: state.current + 1,
+  };
+  await setTaskState(updated);
 
-  if (state.current >= state.total) {
-    await _onBatchDone(state);
+  if (updated.current >= updated.total) {
+    await _onBatchDone(updated);
     return;
   }
 
   const settings = await _getSettings();
   const delay = settings.autoPaginateDelay ?? 2000;
-  setTimeout(() => _navigateTo(state.queue[state.current]), delay);
+  setTimeout(() => _navigateTo(updated.queue[updated.current]), delay);
 }
 
 // ── 判断当前候选人页是否属于批量任务 ─────────────────────────
@@ -111,8 +115,8 @@ async function isBatchRunning() {
 
 // ── 内部函数 ──────────────────────────────────────────────────
 async function _onBatchDone(state) {
-  state.isRunning = false;
-  await setTaskState(state);
+  const done = { ...state, isRunning: false };
+  await setTaskState(done);
   console.log('[CVFilterX] 批量完成', {
     total: state.total,
     pass: state.pass,
@@ -130,8 +134,7 @@ async function _navigateTo(url) {
 
 async function _getSettings() {
   try {
-    const res = await chrome.runtime.sendMessage({ type: 'GET_SETTINGS' });
-    return res?.settings || {};
+    return await cvfxGetSettings();
   } catch {
     return {};
   }

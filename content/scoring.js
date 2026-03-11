@@ -94,7 +94,8 @@ async function scoreCandidate(settings, explicitTemplateId, afterScore) {
       candidateId, settings
     );
 
-    cvfx.renderOverlay('scored', { result: response.result });
+    const resultWithRank = await attachRankInfo(response.result);
+    cvfx.renderOverlay('scored', { result: resultWithRank });
     sendMsg(MSG.SCORE_RESULT, { result: response.result }).catch(() => {});
     if (afterScore) afterScore(response.result, null);
   } catch (err) {
@@ -166,6 +167,33 @@ async function withScoringTimeout(msgPromise, candidateId, settings, timeoutMs =
     await sleep(3000);
   }
   throw new Error('评分超时：LLM 响应未在预期时间内完成');
+}
+
+async function attachRankInfo(result) {
+  if (!result || !result.jobId) return result;
+  try {
+    const data = await chrome.storage.local.get('scores');
+    const scores = data.scores ?? {};
+    const sameJob = Object.values(scores).filter(
+      s => s.jobId === result.jobId && typeof s.overallScore === 'number'
+    );
+    if (sameJob.length < 3) return result;
+
+    const allScores = sameJob.map(s => s.overallScore);
+    const avg = Math.round(allScores.reduce((a, b) => a + b, 0) / allScores.length);
+    const sorted = [...allScores].sort((a, b) => b - a);
+    const rank = sorted.indexOf(result.overallScore) + 1;
+    const diff = result.overallScore - avg;
+    const diffStr = diff >= 0 ? `+${diff}` : `${diff}`;
+
+    return {
+      ...result,
+      rankInfo: `高于平均 ${diffStr} 分 · 排名 ${rank}/${sameJob.length}`,
+    };
+  } catch (e) {
+    console.warn('[CVFilterX] attachRankInfo 失败:', e.message);
+    return result;
+  }
 }
 
 async function getCurrentTemplateInfo(settings) {
