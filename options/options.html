@@ -208,9 +208,21 @@
             <textarea id="tpl-ps-taskGuide" rows="4" class="prompt-section-input" placeholder="留空则使用系统内置默认值"></textarea>
           </div>
 
-          <div class="prompt-section prompt-var-section">
-            <div class="prompt-section-header"><span class="prompt-section-num">3</span> 岗位描述</div>
-            <div class="prompt-var-tag">{jd} 运行时自动填充</div>
+          <div class="prompt-section" id="jd-section">
+            <div class="prompt-section-header">
+              <span class="prompt-section-num">3</span> 岗位描述
+              <div class="jd-mode-toggle">
+                <label class="jd-mode-option">
+                  <input type="radio" name="jd-mode" value="auto" checked> 自动获取
+                </label>
+                <label class="jd-mode-option">
+                  <input type="radio" name="jd-mode" value="manual"> 手动填入
+                </label>
+              </div>
+            </div>
+            <div id="jd-auto-hint" class="prompt-var-tag">{jd} 运行时自动填充</div>
+            <textarea id="tpl-manual-jd" rows="6" class="prompt-section-input"
+              placeholder="粘贴或输入岗位描述全文..." style="display:none"></textarea>
           </div>
 
           <div class="prompt-section prompt-var-section">

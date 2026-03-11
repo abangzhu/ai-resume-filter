@@ -207,6 +207,11 @@ function openTemplateEditor(templateId) {
     $('tpl-name').value = t.name ?? '';
     $('tpl-desc').value = t.description ?? '';
     $('tpl-keywords').value = (t.matchKeywords ?? []).join(', ');
+    const jdMode = t.jdMode ?? 'auto';
+    document.querySelector(`input[name="jd-mode"][value="${jdMode}"]`).checked = true;
+    $('tpl-manual-jd').value = t.manualJD ?? '';
+    $('jd-auto-hint').style.display = jdMode === 'manual' ? 'none' : '';
+    $('tpl-manual-jd').style.display = jdMode === 'manual' ? '' : 'none';
     renderModalDimensions(t.dimensionConfig ?? DEFAULT_DIMENSIONS);
     fillPromptSections(t.promptSections);
   } else {
@@ -214,6 +219,10 @@ function openTemplateEditor(templateId) {
     $('tpl-name').value = '';
     $('tpl-desc').value = '';
     $('tpl-keywords').value = '';
+    document.querySelector('input[name="jd-mode"][value="auto"]').checked = true;
+    $('tpl-manual-jd').value = '';
+    $('jd-auto-hint').style.display = '';
+    $('tpl-manual-jd').style.display = 'none';
     renderModalDimensions(DEFAULT_DIMENSIONS);
     fillPromptSections(null);
   }
@@ -327,6 +336,11 @@ $('btn-modal-save').addEventListener('click', async () => {
     ? keywordsStr.split(/[,，]/).map(k => k.trim()).filter(Boolean)
     : [];
 
+  const jdMode = document.querySelector('input[name="jd-mode"]:checked')?.value ?? 'auto';
+  if (jdMode === 'manual' && !$('tpl-manual-jd').value.trim()) {
+    showToast('手动模式下请填写岗位描述', 'warning');
+    return;
+  }
   const template = {
     id: editingTemplateId || undefined,
     name,
@@ -335,6 +349,8 @@ $('btn-modal-save').addEventListener('click', async () => {
     promptSections: getPromptSectionsFromDOM(),
     promptTemplate: '',  // 清空旧字段，新模式使用 promptSections
     matchKeywords,
+    jdMode,
+    manualJD: jdMode === 'manual' ? $('tpl-manual-jd').value.trim() : '',
   };
 
   // 保留已有模板的 isDefault 状态
@@ -412,6 +428,11 @@ ${dimSchema}
   const task = sections.taskGuide ?? PROMPT_SECTION_DEFAULTS.taskGuide;
   const rules = sections.outputRules ?? PROMPT_SECTION_DEFAULTS.outputRules;
 
+  const jdModeVal = document.querySelector('input[name="jd-mode"]:checked')?.value ?? 'auto';
+  const jdPreview = jdModeVal === 'manual'
+    ? ($('tpl-manual-jd').value.trim() || '【未填写手动 JD】')
+    : '【运行时将填入实际岗位描述 JD】';
+
   const preview = `${role}
 
 ## 任务说明
@@ -421,7 +442,7 @@ ${task}
 ---
 
 ## 岗位描述
-【运行时将填入实际岗位描述 JD】
+${jdPreview}
 
 ## 候选人简历
 【运行时将填入实际候选人简历数据（JSON 格式）】
@@ -446,6 +467,15 @@ $('prompt-preview-ok').addEventListener('click', () => {
 });
 $('prompt-preview-backdrop').addEventListener('click', () => {
   $('prompt-preview-modal').style.display = 'none';
+});
+
+// ── JD 模式切换 ─────────────────────────────────────────────────
+document.querySelectorAll('input[name="jd-mode"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    const isManual = radio.value === 'manual' && radio.checked;
+    $('jd-auto-hint').style.display = isManual ? 'none' : '';
+    $('tpl-manual-jd').style.display = isManual ? '' : 'none';
+  });
 });
 
 // ── Prompt 恢复默认 ──────────────────────────────────────────────

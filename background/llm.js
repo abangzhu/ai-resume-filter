@@ -22,7 +22,7 @@ async function handleScoreResume(resumeData, jobData, templateId) {
   const settings = await getSettings();
 
   if (!settings.apiKey) {
-    throw new Error('API Key 未配置，请先在设置页填写。');
+    throw new Error('[CVFX-E005] API Key 未配置，请先在设置页填写。');
   }
 
   const templates = await getTemplates();
@@ -36,13 +36,23 @@ async function handleScoreResume(resumeData, jobData, templateId) {
   }
 
   if (!template) {
-    throw new Error('未找到可用的评分模板，请先在设置中创建模板。');
+    throw new Error('[CVFX-E006] 未找到可用的评分模板，请先在设置中创建模板。');
   }
 
-  const prompt = buildPrompt(resumeData, jobData, template);
+  const jdMode = template.jdMode ?? 'auto';
+  const effectiveJobData = (jdMode === 'manual' && template.manualJD)
+    ? {
+        jobId: `manual-${template.id}`,
+        jobTitle: template.name || '手动输入',
+        rawJD: template.manualJD,
+        capturedAt: Date.now(),
+      }
+    : jobData;
+
+  const prompt = buildPrompt(resumeData, effectiveJobData, template);
   const resumeTextLength = (resumeData.resumeText ?? '').length;
   const raw = await callLLM(prompt, settings, 0, resumeData.resumeImageBase64 ?? null, resumeTextLength);
-  const result = parseScoreResult(raw, resumeData, jobData, template, settings);
+  const result = parseScoreResult(raw, resumeData, effectiveJobData, template, settings);
 
   await saveScore(result);
 
@@ -70,11 +80,14 @@ ${dimSchema}
   "concerns": ["<关注点1>"]
 }`;
 
+  // 剥离 base64 图片数据（已通过 vision content 单独发送，不需要在文本里重复）
+  const { resumeImageBase64: _img, ...resumeForPrompt } = resumeData;
+
   // 向后兼容：旧模板使用 promptTemplate 字符串替换
   if (template.promptTemplate) {
     return template.promptTemplate
       .replace('{jd}', jobData.rawJD)
-      .replace('{resume}', JSON.stringify(resumeData, null, 2))
+      .replace('{resume}', JSON.stringify(resumeForPrompt, null, 2))
       .replace('{dimensions}', dims);
   }
 
@@ -96,7 +109,7 @@ ${task}
 ${jobData.rawJD}
 
 ## 候选人简历
-${JSON.stringify(resumeData, null, 2)}
+${JSON.stringify(resumeForPrompt, null, 2)}
 
 ## 评估维度（请对每个维度打分 0-10）
 ${dims}
@@ -175,7 +188,7 @@ async function callLLM(userPrompt, settings, retryCount = 0, imageBase64 = null,
       return callLLM(userPrompt, settings, retryCount + 1, imageBase64, resumeTextLength);
     }
     throw new Error(
-      `网络请求失败（已重试 ${retryCount} 次）：${networkErr.message}`,
+      `[CVFX-E001] 网络请求失败（已重试 ${retryCount} 次）：${networkErr.message}`,
     );
   }
 
@@ -197,7 +210,7 @@ async function callLLM(userPrompt, settings, retryCount = 0, imageBase64 = null,
       const errJson = JSON.parse(body);
       errMsg = errJson?.error?.message ?? errMsg;
     } catch { /* ignore parse error */ }
-    throw new Error(errMsg);
+    throw new Error(`[CVFX-E002] ${errMsg}`);
   }
 
   const data = await response.json();
@@ -260,7 +273,7 @@ async function callLLM(userPrompt, settings, retryCount = 0, imageBase64 = null,
       }
     }
 
-    throw new Error(`API 返回内容为空 (finish_reason: ${finishReason})`);
+    throw new Error(`[CVFX-E003] API 返回内容为空 (finish_reason: ${finishReason})`);
   }
   return content;
 }
@@ -272,39 +285,150 @@ function parseScoreResult(raw, resumeData, jobData, template, settings) {
   } catch {
     const match = raw.match(/\{[\s\S]*\}/);
     if (!match)
-      throw new Error(`LLM 返回内容无法解析为 JSON：${raw.slice(0, 200)}`);
+      throw new Error(`[CVFX-E004] LLM 返回内容无法解析为 JSON：${raw.slice(0, 200)}`);
     parsed = JSON.parse(match[0]);
   }
 
+  const dimConfig = template.dimensionConfig ?? [];
+  const originalKeys = Object.keys(parsed);
+
+  // --- 归一化 LLM 响应结构 ---
+  // Case A: dimensionScores 数组 → dimensions 对象
+  if (!parsed.dimensions && Array.isArray(parsed.dimensionScores)) {
+    parsed.dimensions = {};
+    for (const item of parsed.dimensionScores) {
+      const dimName = item.dimension || item.name || item.key;
+      const matched = dimConfig.find(d => d.label?.toLowerCase() === dimName?.toLowerCase());
+      const key = matched?.key || dimName;
+      if (key) {
+        parsed.dimensions[key] = {
+          score: item.score,
+          comment: item.reason || item.comment || '',
+        };
+      }
+    }
+  }
+
+  // Case B: dimensions 是数组
+  if (Array.isArray(parsed.dimensions)) {
+    const obj = {};
+    for (const item of parsed.dimensions) {
+      const key = item.key || item.dimension || item.name;
+      if (key) obj[key] = item;
+    }
+    parsed.dimensions = obj;
+  }
+
+  // 归一化顶层字段
+  if (!parsed.recommendation) {
+    const rec = (parsed.overallRecommendation || parsed.overall_recommendation || '').toLowerCase();
+    parsed.recommendation = rec.includes('reject') || rec.includes('不建议') ? 'reject'
+      : rec.includes('hold') || rec.includes('待定') ? 'hold' : 'pass';
+  }
+  if (!parsed.summary) {
+    parsed.summary = parsed.overallConclusion || parsed.overall_conclusion || parsed.conclusion || '';
+  }
+  if (!parsed.highlights && parsed.strengths) parsed.highlights = parsed.strengths;
+  if (!parsed.concerns && parsed.weaknesses) parsed.concerns = parsed.weaknesses;
+
+  console.log('[CVFilterX] parseScoreResult 归一化', {
+    originalKeys,
+    hadDimensionScores: Array.isArray(parsed.dimensionScores),
+    normalizedDimKeys: Object.keys(parsed.dimensions ?? {}),
+  });
+
   const rawDimensions = parsed.dimensions ?? {};
 
-  const dimConfig = template.dimensionConfig ?? [];
+  console.log('[CVFilterX] parseScoreResult 维度匹配', {
+    templateDimKeys: dimConfig.map(d => d.key),
+    llmDimKeys: Object.keys(rawDimensions),
+    recommendation: parsed.recommendation,
+    hasSummary: !!parsed.summary,
+  });
   let overallScore = 0;
   let totalWeight = 0;
 
   const dimensions = {};
+  const matchedRawKeys = new Set();
+
   for (const d of dimConfig) {
-    const rawDim = rawDimensions[d.key];
-    const score = rawDim?.score;
-    if (typeof score === 'number') {
+    // 精确匹配 → 大小写不敏感 → label 匹配
+    let rawDim = rawDimensions[d.key];
+    let matchedKey = d.key;
+    if (!rawDim) {
+      const lowerKey = d.key.toLowerCase();
+      matchedKey = Object.keys(rawDimensions).find(
+        k => k.toLowerCase() === lowerKey
+      );
+      rawDim = matchedKey ? rawDimensions[matchedKey] : undefined;
+    }
+    if (!rawDim && d.label) {
+      const labelLower = d.label.toLowerCase();
+      matchedKey = Object.keys(rawDimensions).find(
+        k => k.toLowerCase() === labelLower
+      );
+      rawDim = matchedKey ? rawDimensions[matchedKey] : undefined;
+    }
+    if (rawDim && matchedKey) matchedRawKeys.add(matchedKey);
+
+    // Score 类型容错：字符串 "8" → 数字 8
+    const rawScore = rawDim?.score;
+    const score = typeof rawScore === 'number' ? rawScore
+      : typeof rawScore === 'string' ? parseFloat(rawScore) : NaN;
+    if (!isNaN(score)) {
       overallScore += score * d.weight;
       totalWeight += d.weight;
     }
     if (rawDim) {
       dimensions[d.key] = {
         ...rawDim,
+        score: !isNaN(score) ? score : rawDim.score,
         label: d.label,
         weight: d.weight,
       };
     }
   }
-  for (const key of Object.keys(rawDimensions)) {
-    if (!dimensions[key]) {
-      dimensions[key] = rawDimensions[key];
+
+  // 兜底：LLM 返回了模板中未定义的维度，均分剩余权重
+  const unmatchedKeys = Object.keys(rawDimensions).filter(k => !matchedRawKeys.has(k));
+  if (unmatchedKeys.length > 0) {
+    const fallbackWeight = totalWeight > 0
+      ? 0
+      : Math.round(100 / unmatchedKeys.length);
+    for (const key of unmatchedKeys) {
+      const rawDim = rawDimensions[key];
+      const rawScore = rawDim?.score;
+      const score = typeof rawScore === 'number' ? rawScore
+        : typeof rawScore === 'string' ? parseFloat(rawScore) : NaN;
+      dimensions[key] = {
+        ...rawDim,
+        score: !isNaN(score) ? score : rawDim?.score,
+        label: rawDim?.label || key,
+        weight: fallbackWeight,
+      };
+      if (!isNaN(score) && fallbackWeight > 0) {
+        overallScore += score * fallbackWeight;
+        totalWeight += fallbackWeight;
+      }
     }
   }
 
   overallScore = totalWeight > 0 ? Math.round(overallScore / 10) : 0;
+
+  console.log('[CVFilterX] parseScoreResult 结果', {
+    matchedCount: matchedRawKeys.size,
+    unmatchedCount: unmatchedKeys.length,
+    totalWeight,
+    overallScore,
+    dimCount: Object.keys(dimensions).length,
+  });
+
+  if (overallScore === 0 && Object.keys(dimensions).length === 0) {
+    console.warn('[CVFilterX] [CVFX-W001] 评分为 0 且无维度明细，可能是 prompt 截断或 LLM 返回结构异常', {
+      rawDimKeys: Object.keys(rawDimensions),
+      parsedKeys: originalKeys,
+    });
+  }
 
   return {
     candidateId: resumeData.candidateId,

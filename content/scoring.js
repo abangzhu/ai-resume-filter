@@ -93,7 +93,19 @@ async function scoreCandidate(settings, explicitTemplateId, afterScore) {
       },
     };
 
-    const jobData = await cvfxGetJobData(enrichedResumeData.jobId);
+    // 手动 JD 模式：跳过 JD 页面抓取，background 会用 template.manualJD 替换
+    let skipJdFetch = false;
+    try {
+      const tplRes = await sendMsg(MSG.GET_TEMPLATES);
+      const tpl = tplRes?.templates?.[templateId];
+      if (tpl?.jdMode === 'manual' && tpl.manualJD) {
+        skipJdFetch = true;
+      }
+    } catch { /* ignore */ }
+
+    const jobData = skipJdFetch
+      ? { jobId: enrichedResumeData.jobId || 'manual', rawJD: '', jobTitle: '', capturedAt: Date.now() }
+      : await cvfxGetJobData(enrichedResumeData.jobId);
 
     const candidateId = enrichedResumeData.candidateId;
     const response = await withScoringTimeout(

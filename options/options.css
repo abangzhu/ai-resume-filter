@@ -284,6 +284,17 @@ body {
 
 .prompt-section-header .prompt-reset { margin-left: auto; }
 
+.jd-mode-toggle {
+  display: flex; gap: 12px; margin-left: auto;
+}
+.jd-mode-option {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 12px; font-weight: 400; color: var(--cvfx-text-body); cursor: pointer;
+}
+.jd-mode-option input[type="radio"] {
+  accent-color: var(--cvfx-primary); cursor: pointer;
+}
+
 .prompt-section-num {
   display: inline-flex;
   align-items: center;

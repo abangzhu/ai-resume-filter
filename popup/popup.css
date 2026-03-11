@@ -108,7 +108,7 @@ body {
 .btn.small { font-size: 12px; }
 
 /* Template select */
-.template-select-area { padding: 0 14px 2px; }
+.template-select-area { padding: 0; }
 .template-select {
   flex: 1;
   padding: 3px 6px;
