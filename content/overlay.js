@@ -120,10 +120,10 @@ function initOverlayEvents(el) {
 
     const target = e.target.closest('[data-action]');
 
-    // 展开已折叠的面板
-    if (!target && overlayCollapsed && e.target.closest('#cvfx-header')) {
-      overlayCollapsed = false;
-      el.classList.remove('collapsed');
+    // 点击标题栏切换折叠/展开
+    if (!target && e.target.closest('#cvfx-header')) {
+      overlayCollapsed = !overlayCollapsed;
+      el.classList.toggle('collapsed', overlayCollapsed);
       el.innerHTML = buildHTML(overlayState, overlayPayload);
       return;
     }
