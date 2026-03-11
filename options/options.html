@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CVFilterX 设置</title>
+  <link rel="stylesheet" href="../lib/tokens.css">
   <link rel="stylesheet" href="options.css">
 </head>
 <body>
@@ -168,6 +169,13 @@
           <label for="tpl-keywords">匹配关键词</label>
           <input type="text" id="tpl-keywords" placeholder="逗号分隔，如：后端,backend,java,golang">
           <span class="hint">当职位标题包含这些关键词时，系统会自动推荐此模板。</span>
+          <div class="keyword-test">
+            <div class="keyword-test-row">
+              <input type="text" id="tpl-keyword-test-input" placeholder="输入职位标题测试匹配...">
+              <button id="btn-keyword-test" class="btn secondary btn-xs">测试</button>
+            </div>
+            <div id="keyword-test-result" class="keyword-test-result"></div>
+          </div>
         </div>
 
         <div class="form-group">
@@ -182,12 +190,65 @@
         </div>
 
         <div class="form-group">
-          <label for="tpl-prompt">自定义 Prompt 模板</label>
-          <div class="var-hints">
-            可用变量：<code>{jd}</code> 职位描述　<code>{resume}</code> 简历内容　<code>{dimensions}</code> 评估维度列表
+          <label>Prompt 构建器 <button id="btn-prompt-preview" class="btn secondary btn-xs" style="margin-left:8px">预览</button></label>
+
+          <div class="prompt-section">
+            <div class="prompt-section-header">
+              <span class="prompt-section-num">1</span> 角色设定
+              <button class="btn secondary btn-xs prompt-reset" data-section="roleSetup">恢复默认</button>
+            </div>
+            <textarea id="tpl-ps-roleSetup" rows="4" class="prompt-section-input" placeholder="留空则使用系统内置默认值"></textarea>
           </div>
-          <textarea id="tpl-prompt" rows="8" placeholder="留空则使用内置默认 Prompt"></textarea>
-          <span class="hint">留空时使用内置 Prompt；填写后将完全替换（需包含输出 JSON 格式说明）。</span>
+
+          <div class="prompt-section">
+            <div class="prompt-section-header">
+              <span class="prompt-section-num">2</span> 任务说明
+              <button class="btn secondary btn-xs prompt-reset" data-section="taskGuide">恢复默认</button>
+            </div>
+            <textarea id="tpl-ps-taskGuide" rows="4" class="prompt-section-input" placeholder="留空则使用系统内置默认值"></textarea>
+          </div>
+
+          <div class="prompt-section" id="jd-section">
+            <div class="prompt-section-header">
+              <span class="prompt-section-num">3</span> 岗位描述
+              <div class="jd-mode-toggle">
+                <label class="jd-mode-option">
+                  <input type="radio" name="jd-mode" value="auto" checked> 自动获取
+                </label>
+                <label class="jd-mode-option">
+                  <input type="radio" name="jd-mode" value="manual"> 手动填入
+                </label>
+              </div>
+            </div>
+            <div id="jd-auto-hint" class="prompt-var-tag">{jd} 运行时自动填充</div>
+            <textarea id="tpl-manual-jd" rows="6" class="prompt-section-input"
+              placeholder="粘贴或输入岗位描述全文..." style="display:none"></textarea>
+          </div>
+
+          <div class="prompt-section prompt-var-section">
+            <div class="prompt-section-header"><span class="prompt-section-num">4</span> 候选人简历</div>
+            <div class="prompt-var-tag">{resume} 运行时自动填充</div>
+          </div>
+
+          <div class="prompt-section prompt-var-section">
+            <div class="prompt-section-header"><span class="prompt-section-num">5</span> 评估维度</div>
+            <div class="prompt-var-tag">{dimensions} 由上方维度配置自动生成</div>
+          </div>
+
+          <div class="prompt-section prompt-var-section">
+            <div class="prompt-section-header"><span class="prompt-section-num">6</span> 输出格式</div>
+            <div class="prompt-var-tag">JSON schema 由维度配置自动生成，不可修改</div>
+          </div>
+
+          <div class="prompt-section">
+            <div class="prompt-section-header">
+              <span class="prompt-section-num">7</span> 评分规则
+              <button class="btn secondary btn-xs prompt-reset" data-section="outputRules">恢复默认</button>
+            </div>
+            <textarea id="tpl-ps-outputRules" rows="3" class="prompt-section-input" placeholder="留空则使用系统内置默认值"></textarea>
+          </div>
+
+          <span class="hint">留空的区块将使用系统内置默认值。点击"预览"可查看完整 Prompt。</span>
         </div>
       </div>
       <div class="modal-footer">
@@ -197,6 +258,27 @@
     </div>
   </div>
 
+  <!-- Prompt 预览弹窗 -->
+  <div id="prompt-preview-modal" class="modal" style="display:none">
+    <div class="modal-backdrop" id="prompt-preview-backdrop"></div>
+    <div class="modal-content" style="max-width:700px">
+      <div class="modal-header">
+        <h2>Prompt 预览</h2>
+        <button id="prompt-preview-close" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <textarea id="prompt-preview-text" rows="20" readonly class="prompt-preview-textarea"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button id="prompt-preview-ok" class="btn primary">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../lib/constants.js"></script>
+  <script src="../lib/utils.js"></script>
+  <script src="../lib/messaging.js"></script>
+  <script src="../lib/toast.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

@@ -24,12 +24,18 @@
     {
       "matches": ["https://*.feishu.cn/hire/*"],
       "js": [
+        "lib/constants.js",
+        "lib/utils.js",
+        "lib/messaging.js",
+        "lib/storage.js",
         "content/extractor.js",
         "content/overlay.js",
+        "content/template-dialog.js",
+        "content/scoring.js",
         "content/paginator.js",
         "content/content.js"
       ],
-      "css": ["content/overlay.css"],
+      "css": ["lib/tokens.css", "content/overlay.css"],
       "run_at": "document_idle"
     }
   ],

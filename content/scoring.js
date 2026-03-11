@@ -72,29 +72,49 @@ async function scoreCandidate(settings, explicitTemplateId, afterScore) {
 
   try {
     const resumeData = cvfx.extractResumeData(settings.fieldConfig);
+    const textLength = (resumeData.resumeText ?? '').length;
 
-    // 图片 fallback：不可变模式
-    if ((resumeData.resumeText ?? '').length < 100) {
-      try {
-        const imageBase64 = await cvfxCaptureResumeImage();
-        if (imageBase64) {
-          resumeData.resumeImageBase64 = imageBase64;
-          console.log('[CVFilterX] 简历文本不足，已截图作为 fallback');
-        }
-      } catch (e) {
-        console.warn('[CVFilterX] 简历截图失败:', e.message);
-      }
+    // 始终尝试截图（不再依赖文本长度阈值）
+    let imageBase64 = null;
+    try {
+      imageBase64 = await cvfxCaptureResumeImage();
+    } catch (e) {
+      console.warn('[CVFilterX] 简历截图失败:', e.message);
     }
 
-    const jobData = await cvfxGetJobData(resumeData.jobId);
+    // 不可变：构建带截图和来源元数据的 enrichedResumeData
+    const enrichedResumeData = {
+      ...resumeData,
+      ...(imageBase64 ? { resumeImageBase64: imageBase64 } : {}),
+      resumeSource: {
+        hasText: textLength > 0,
+        textLength,
+        hasImage: !!imageBase64,
+      },
+    };
 
-    const candidateId = resumeData.candidateId;
+    // 手动 JD 模式：跳过 JD 页面抓取，background 会用 template.manualJD 替换
+    let skipJdFetch = false;
+    try {
+      const tplRes = await sendMsg(MSG.GET_TEMPLATES);
+      const tpl = tplRes?.templates?.[templateId];
+      if (tpl?.jdMode === 'manual' && tpl.manualJD) {
+        skipJdFetch = true;
+      }
+    } catch { /* ignore */ }
+
+    const jobData = skipJdFetch
+      ? { jobId: enrichedResumeData.jobId || 'manual', rawJD: '', jobTitle: '', capturedAt: Date.now() }
+      : await cvfxGetJobData(enrichedResumeData.jobId);
+
+    const candidateId = enrichedResumeData.candidateId;
     const response = await withScoringTimeout(
-      sendMsg(MSG.SCORE_RESUME, { resumeData, jobData, templateId }),
+      sendMsg(MSG.SCORE_RESUME, { resumeData: enrichedResumeData, jobData, templateId }),
       candidateId, settings
     );
 
-    cvfx.renderOverlay('scored', { result: response.result });
+    const resultWithRank = await attachRankInfo(response.result);
+    cvfx.renderOverlay('scored', { result: resultWithRank });
     sendMsg(MSG.SCORE_RESULT, { result: response.result }).catch(() => {});
     if (afterScore) afterScore(response.result, null);
   } catch (err) {
@@ -106,14 +126,32 @@ async function scoreCandidate(settings, explicitTemplateId, afterScore) {
 
 async function cvfxCaptureResumeImage() {
   const cvfx = window.__cvfx;
-  const sel = cvfx.SELECTORS.candidate.resumeTabContent;
-  const el = document.querySelector(sel);
-  if (!el) return null;
+  const sel = cvfx.SELECTORS.candidate;
+  const MIN_SIZE = 50;
 
-  el.scrollIntoView({ behavior: 'instant', block: 'nearest' });
+  // 优先级级联：PDF viewer > active panel > tab container
+  const candidates = [
+    sel.resumePdfViewer,
+    sel.resumeActivePanel,
+    sel.resumeTabContent,
+  ];
+
+  let target = null;
+  for (const selector of candidates) {
+    const el = document.querySelector(selector);
+    if (!el) continue;
+    const r = el.getBoundingClientRect();
+    if (r.width >= MIN_SIZE && r.height >= MIN_SIZE) {
+      target = el;
+      break;
+    }
+  }
+  if (!target) return null;
+
+  target.scrollIntoView({ behavior: 'instant', block: 'nearest' });
   await new Promise(r => setTimeout(r, 400));
 
-  const rect = el.getBoundingClientRect();
+  const rect = target.getBoundingClientRect();
   const dpr = window.devicePixelRatio || 1;
 
   const res = await sendMsg(MSG.CAPTURE_RESUME_IMAGE, {
@@ -166,6 +204,33 @@ async function withScoringTimeout(msgPromise, candidateId, settings, timeoutMs =
     await sleep(3000);
   }
   throw new Error('评分超时：LLM 响应未在预期时间内完成');
+}
+
+async function attachRankInfo(result) {
+  if (!result || !result.jobId) return result;
+  try {
+    const data = await chrome.storage.local.get('scores');
+    const scores = data.scores ?? {};
+    const sameJob = Object.values(scores).filter(
+      s => s.jobId === result.jobId && typeof s.overallScore === 'number'
+    );
+    if (sameJob.length < 3) return result;
+
+    const allScores = sameJob.map(s => s.overallScore);
+    const avg = Math.round(allScores.reduce((a, b) => a + b, 0) / allScores.length);
+    const sorted = [...allScores].sort((a, b) => b - a);
+    const rank = sorted.indexOf(result.overallScore) + 1;
+    const diff = result.overallScore - avg;
+    const diffStr = diff >= 0 ? `+${diff}` : `${diff}`;
+
+    return {
+      ...result,
+      rankInfo: `高于平均 ${diffStr} 分 · 排名 ${rank}/${sameJob.length}`,
+    };
+  } catch (e) {
+    console.warn('[CVFilterX] attachRankInfo 失败:', e.message);
+    return result;
+  }
 }
 
 async function getCurrentTemplateInfo(settings) {

@@ -10,6 +10,7 @@
 const cvfx = window.__cvfx;
 
 let currentTalentId = null;
+cvfx.pageReady = false;
 
 // ── 初始化 ────────────────────────────────────────────────────
 async function init() {
@@ -25,7 +26,6 @@ async function init() {
 
 // ── 候选人详情页 ──────────────────────────────────────────────
 async function onCandidateDetailPage() {
-  // 等待候选人元素渲染
   try {
     await cvfx.waitForElement(cvfx.SELECTORS.candidate.talentEl, 10000);
   } catch {
@@ -33,19 +33,20 @@ async function onCandidateDetailPage() {
     return;
   }
 
-  // 防止 SPA 路由重复触发
   const talentId = location.pathname.match(cvfx.URL_PATTERNS.talentId)?.[1];
   if (talentId === currentTalentId) return;
   currentTalentId = talentId;
 
-  // 挂载浮层
   cvfx.mountOverlay();
 
-  const settings = await getSettings();
+  // 先渲染未就绪的 idle 状态
+  cvfx.pageReady = false;
 
-  // 批量模式：自动评分
+  const settings = await cvfxGetSettings();
+
+  // 批量模式
   if (await cvfx.isBatchRunning()) {
-    const cached = await getCachedScore(talentId, settings);
+    const cached = await cvfxGetCachedScore(talentId, settings);
     if (cached && settings.skipScored !== false) {
       console.log(`[CVFilterX] 跳过已评分: ${talentId}`);
       cvfx.renderOverlay('scored', { result: cached });
@@ -53,7 +54,6 @@ async function onCandidateDetailPage() {
       return;
     }
 
-    // 批量模式下从 taskState 读取模板 ID
     const taskState = await cvfx.getTaskState();
     const batchTemplateId = taskState?.templateId || null;
 
@@ -64,20 +64,27 @@ async function onCandidateDetailPage() {
     return;
   }
 
-  // 手动模式：检查缓存或显示 idle（附带当前模板信息）
+  // 手动模式：先显示未就绪 idle，等简历面板出现后标记就绪
   const templateInfo = await getCurrentTemplateInfo(settings);
-  const cached = await getCachedScore(talentId, settings);
+  const cached = await cvfxGetCachedScore(talentId, settings);
   if (cached) {
-    cvfx.renderOverlay('scored', { result: cached });
+    const cachedWithRank = await attachRankInfo(cached);
+    cvfx.pageReady = true;
+    cvfx.renderOverlay('scored', { result: cachedWithRank });
   } else {
-    cvfx.renderOverlay('idle', { templateName: templateInfo?.name });
+    cvfx.renderOverlay('idle', { templateName: templateInfo?.name, pageReady: false });
+    // 非阻塞等待简历面板出现
+    try {
+      await cvfx.waitForElement(cvfx.SELECTORS.candidate.resumeTabContent, 8000);
+    } catch { /* 超时不阻断 */ }
+    cvfx.pageReady = true;
+    cvfx.renderOverlay('idle', { templateName: templateInfo?.name, pageReady: true });
   }
 }
 
-// ── JD 详情页（自动提取并缓存）───────────────────────────────
+// ── JD 详情页 ────────────────────────────────────────────────
 async function onJobDetailPage() {
   try {
-    // 等待 job-showcase-panel-item 渲染
     await cvfx.waitForElement('.job-showcase-panel-item', 8000);
   } catch {
     return;
@@ -85,7 +92,7 @@ async function onJobDetailPage() {
 
   const jobData = cvfx.extractJobData();
   if (!jobData.rawJD.includes('[JD 提取失败')) {
-    await cacheJobData(jobData);
+    await cvfxCacheJobData(jobData);
     console.log(`[CVFilterX] JD 已缓存: ${jobData.jobTitle} (${jobData.jobId})`);
   }
 }
@@ -94,332 +101,38 @@ async function onJobDetailPage() {
 async function onCandidateListPage() {
   console.log('[CVFilterX] 评估列表页就绪');
 
-  // 等待 API 数据就绪（评估列表用 Canvas 渲染，无 DOM 可查）
   try {
     await cvfx.waitForEvalList(10000);
   } catch {
     console.warn('[CVFilterX] 评估列表 API 数据等待超时，将尝试 DOM 降级');
     try {
-      await cvfx.waitForElement(
-        ['[data-talent-id]', 'a[href*="/hire/talent/"]'],
-        3000
-      );
-    } catch { /* 超时不阻断后续逻辑 */ }
+      await cvfx.waitForElement(['[data-talent-id]', 'a[href*="/hire/talent/"]'], 3000);
+    } catch { /* 超时不阻断 */ }
   }
 
-  // 从过滤标签 / URL 参数提取职位信息缓存，供 Popup 展示
   const jobData = cvfx.extractJobFromEvalList?.();
   if (jobData?.jobTitle) {
-    await cacheJobData(jobData);
+    await cvfxCacheJobData(jobData);
     console.log(`[CVFilterX] 从评估列表提取到职位: ${jobData.jobTitle}`);
   }
 
-  // 输出诊断：当前找到多少候选人链接
   const count = cvfx.collectCandidateLinks?.().length ?? 0;
   console.log(`[CVFilterX] 评估列表候选人数: ${count}`);
-}
 
-// ── 评分核心流程 ──────────────────────────────────────────────
-async function scoreCandidate(settings, explicitTemplateId, afterScore) {
-  if (!settings.apiKey) {
-    cvfx.renderOverlay('error', { error: 'API Key 未配置，请打开设置页填写。' });
-    chrome.runtime.sendMessage({ type: 'OPEN_OPTIONS' });
-    if (afterScore) afterScore(null, new Error('API Key 未配置'));
-    return;
-  }
-
-  // 确定模板 ID
-  let templateId = explicitTemplateId;
-
-  if (!templateId) {
-    // 检查 jobTemplates 关联
-    const resumeData = cvfx.extractResumeData(settings.fieldConfig);
-    const jobId = resumeData.jobId;
-    if (jobId) {
-      const jtRes = await chrome.runtime.sendMessage({ type: 'GET_JOB_TEMPLATE', jobId });
-      if (jtRes?.ok && jtRes.jobTemplate) {
-        templateId = jtRes.jobTemplate.templateId;
-      }
-    }
-
-    // 如果还没有，弹出模板选择对话框
-    if (!templateId) {
-      const tplRes = await chrome.runtime.sendMessage({ type: 'GET_TEMPLATES' });
-      if (!tplRes?.ok) {
-        cvfx.renderOverlay('error', { error: '加载模板失败' });
-        if (afterScore) afterScore(null, new Error('加载模板失败'));
-        return;
-      }
-
-      const templates = tplRes.templates;
-      const tplList = Object.values(templates);
-
-      if (tplList.length === 1) {
-        // 只有一个模板，直接使用
-        templateId = tplList[0].id;
-      } else {
-        // 尝试匹配
-        const jobTitle = document.querySelector(cvfx.SELECTORS.candidate.jobInfo)?.innerText?.split('\n')[0] || '';
-        let suggested = null;
-        if (jobTitle) {
-          const matchRes = await chrome.runtime.sendMessage({ type: 'MATCH_TEMPLATE', jobTitle });
-          if (matchRes?.ok && matchRes.template) {
-            suggested = matchRes.template;
-          }
-        }
-
-        // 弹出对话框
-        const chosen = await showTemplateDialog(jobTitle, tplList, suggested);
-        if (!chosen) {
-          cvfx.renderOverlay('idle');
-          if (afterScore) afterScore(null, new Error('用户取消选择模板'));
-          return;
-        }
-        templateId = chosen;
-      }
-
-      // 保存关联
-      const jd = cvfx.extractResumeData(settings.fieldConfig);
-      if (jd.jobId) {
-        await chrome.runtime.sendMessage({
-          type: 'SET_JOB_TEMPLATE',
-          jobId: jd.jobId,
-          templateId,
-        });
-      }
-    }
-  }
-
-  cvfx.renderOverlay('loading');
-
-  try {
-    const resumeData = cvfx.extractResumeData(settings.fieldConfig);
-
-    // 图片 fallback：简历文本不足时截图提交给 LLM（视觉模型）
-    if ((resumeData.resumeText ?? '').length < 100) {
-      try {
-        const imageBase64 = await captureResumeImage();
-        if (imageBase64) {
-          resumeData.resumeImageBase64 = imageBase64;
-          console.log('[CVFilterX] 简历文本不足，已截图作为 fallback');
-        }
-      } catch (e) {
-        console.warn('[CVFilterX] 简历截图失败:', e.message);
-      }
-    }
-
-    const jobData = await getJobData(resumeData.jobId);
-
-    const response = await chrome.runtime.sendMessage({
-      type: 'SCORE_RESUME',
-      resumeData,
-      jobData,
-      templateId,
-    });
-
-    if (!response.ok) throw new Error(response.error);
-
-    cvfx.renderOverlay('scored', { result: response.result });
-    chrome.runtime.sendMessage({ type: 'SCORE_RESULT', result: response.result }).catch(() => {});
-    if (afterScore) afterScore(response.result, null);
-  } catch (err) {
-    console.error('[CVFilterX] 评分失败', err);
-    cvfx.renderOverlay('error', { error: err.message });
-    if (afterScore) afterScore(null, err);
-  }
-}
-
-// ── 模板选择对话框 ────────────────────────────────────────────
-function showTemplateDialog(jobTitle, templates, suggested) {
-  return new Promise((resolve) => {
-    // 移除可能存在的旧对话框
-    document.getElementById('cvfx-template-dialog')?.remove();
-
-    const overlay = document.createElement('div');
-    overlay.id = 'cvfx-template-dialog';
-    overlay.innerHTML = `
-      <div class="cvfx-tpl-backdrop"></div>
-      <div class="cvfx-tpl-panel">
-        <div class="cvfx-tpl-title">选择评分模板</div>
-        ${jobTitle ? `<div class="cvfx-tpl-subtitle">当前岗位：${escHtml(jobTitle)}</div>` : ''}
-        <div class="cvfx-tpl-list">
-          ${templates.map(t => {
-            const isSuggested = suggested && t.id === suggested.id;
-            return `
-              <label class="cvfx-tpl-option${isSuggested ? ' suggested' : ''}">
-                <input type="radio" name="cvfx-tpl" value="${t.id}" ${isSuggested ? 'checked' : ''}>
-                <div class="cvfx-tpl-info">
-                  <span class="cvfx-tpl-name">${escHtml(t.name)}</span>
-                  ${isSuggested ? '<span class="cvfx-tpl-tag">推荐</span>' : ''}
-                  ${t.isDefault ? '<span class="cvfx-tpl-tag default">默认</span>' : ''}
-                  <span class="cvfx-tpl-desc">${escHtml(t.description || '')}</span>
-                </div>
-              </label>
-            `;
-          }).join('')}
-        </div>
-        <div class="cvfx-tpl-actions">
-          <button class="cvfx-tpl-btn cancel">取消</button>
-          <button class="cvfx-tpl-btn confirm">确认</button>
-        </div>
-      </div>
-    `;
-
-    document.body.appendChild(overlay);
-
-    const cleanup = (value) => {
-      overlay.remove();
-      resolve(value);
-    };
-
-    overlay.querySelector('.cvfx-tpl-backdrop').addEventListener('click', () => cleanup(null));
-    overlay.querySelector('.cvfx-tpl-btn.cancel').addEventListener('click', () => cleanup(null));
-    overlay.querySelector('.cvfx-tpl-btn.confirm').addEventListener('click', () => {
-      const selected = overlay.querySelector('input[name="cvfx-tpl"]:checked');
-      cleanup(selected?.value || null);
-    });
-  });
-}
-
-function escHtml(str) {
-  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-
-// ── 简历截图（文本不足时的图片 fallback）─────────────────────
-async function captureResumeImage() {
-  const sel = cvfx.SELECTORS.candidate.resumeTabContent;
-  const el = document.querySelector(sel);
-  if (!el) return null;
-
-  // 滚动到元素顶部，等待渲染稳定
-  el.scrollIntoView({ behavior: 'instant', block: 'nearest' });
-  await new Promise(r => setTimeout(r, 400));
-
-  const rect = el.getBoundingClientRect();
-  const dpr  = window.devicePixelRatio || 1;
-
-  const res = await chrome.runtime.sendMessage({
-    type: 'CAPTURE_RESUME_IMAGE',
-    rect: { x: rect.left, y: rect.top, width: rect.width, height: rect.height },
-    dpr,
-  });
-
-  if (!res?.ok) throw new Error(res?.error ?? 'captureVisibleTab failed');
-  return res.imageBase64;
-}
-
-// ── JD 获取（优先缓存，fallback 请求 background 抓取 JD 页）──
-async function getJobData(jobId) {
-  if (jobId) {
-    const d = await chrome.storage.local.get('jobs');
-    const jobs = d.jobs ?? {};
-    const cached = jobs[jobId];
-    if (cached && isFresh(cached.capturedAt, 7) && cached.rawJD && !cached.partial) return cached;
-  }
-
-  // Fallback：用候选人页的岗位信息作为简要 JD
-  const jobEl = document.querySelector(cvfx.SELECTORS.candidate.jobInfo);
-  const briefJobText = jobEl?.innerText?.trim() || '';
-
-  if (jobId) {
-    try {
-      const res = await chrome.runtime.sendMessage({
-        type: 'FETCH_JD',
-        jobId,
-        origin: location.origin,
-      });
-      if (res?.ok && res.jobData) return res.jobData;
-    } catch {}
-    const d = await chrome.storage.local.get('jobs');
-    if (d.jobs?.[jobId]) return d.jobs[jobId];
-  }
-
-  return {
-    jobId: jobId || 'unknown',
-    jobTitle: briefJobText.split('\n')[0] || '未知职位',
-    rawJD: briefJobText || '[未找到 JD，请先访问职位详情页]',
-    capturedAt: Date.now(),
-  };
-}
-
-// ── 工具函数 ──────────────────────────────────────────────────
-async function getSettings() {
-  const res = await chrome.runtime.sendMessage({ type: 'GET_SETTINGS' });
-  return res?.settings ?? {};
-}
-
-async function getCachedScore(talentId, settings) {
-  if (!talentId) return null;
-  const d = await chrome.storage.local.get('scores');
-  const score = d.scores?.[talentId];
-  if (!score) return null;
-  const days = settings.cacheExpireDays ?? 7;
-  if (days > 0 && !isFresh(score.scoredAt, days)) return null;
-  return score;
-}
-
-async function cacheJobData(jobData) {
-  const d = await chrome.storage.local.get('jobs');
-  const jobs = d.jobs ?? {};
-  jobs[jobData.jobId] = jobData;
-  await chrome.storage.local.set({ jobs });
-}
-
-function isFresh(ts, days) {
-  return Date.now() - ts < days * 24 * 60 * 60 * 1000;
-}
-
-async function getCurrentTemplateInfo(settings) {
-  try {
-    const resumeData = cvfx.extractResumeData(settings.fieldConfig);
-    const jobId = resumeData.jobId;
-
-    // 优先查 jobTemplates 绑定
-    if (jobId) {
-      const jtRes = await chrome.runtime.sendMessage({ type: 'GET_JOB_TEMPLATE', jobId });
-      if (jtRes?.ok && jtRes.jobTemplate) {
-        const tplRes = await chrome.runtime.sendMessage({ type: 'GET_TEMPLATES' });
-        if (tplRes?.ok) {
-          const tpl = tplRes.templates[jtRes.jobTemplate.templateId];
-          if (tpl) return { id: tpl.id, name: tpl.name };
-        }
-      }
-    }
-
-    // 尝试 MATCH_TEMPLATE
-    const jobTitle = document.querySelector(cvfx.SELECTORS.candidate.jobInfo)?.innerText?.split('\n')[0] || '';
-    if (jobTitle) {
-      const matchRes = await chrome.runtime.sendMessage({ type: 'MATCH_TEMPLATE', jobTitle });
-      if (matchRes?.ok && matchRes.template) {
-        return { id: matchRes.template.id, name: `${matchRes.template.name}（推荐）` };
-      }
-    }
-
-    // 兜底：默认模板
-    const tplRes = await chrome.runtime.sendMessage({ type: 'GET_TEMPLATES' });
-    if (tplRes?.ok) {
-      const tplList = Object.values(tplRes.templates);
-      const defaultTpl = tplList.find(t => t.isDefault) || tplList[0];
-      if (defaultTpl) return { id: defaultTpl.id, name: defaultTpl.name };
-    }
-  } catch (e) {
-    console.warn('[CVFilterX] 获取模板信息失败:', e.message);
-  }
-  return null;
+  cvfx.pageReady = true;
 }
 
 // ── 事件监听 ──────────────────────────────────────────────────
 
-// 浮层「开始评分」按钮
 document.addEventListener('cvfx:score-request', async () => {
-  const settings = await getSettings();
+  const settings = await cvfxGetSettings();
   await scoreCandidate(settings, null, null);
 });
 
-// 浮层「切换模板」按钮
 document.addEventListener('cvfx:switch-template', async () => {
-  const tplRes = await chrome.runtime.sendMessage({ type: 'GET_TEMPLATES' });
-  if (!tplRes?.ok) return;
+  let tplRes;
+  try { tplRes = await sendMsg(MSG.GET_TEMPLATES); }
+  catch { return; }
 
   const templates = tplRes.templates;
   const tplList = Object.values(templates);
@@ -428,61 +141,63 @@ document.addEventListener('cvfx:switch-template', async () => {
   const jobTitle = document.querySelector(cvfx.SELECTORS.candidate.jobInfo)?.innerText?.split('\n')[0] || '';
   let suggested = null;
   if (jobTitle) {
-    const matchRes = await chrome.runtime.sendMessage({ type: 'MATCH_TEMPLATE', jobTitle });
-    if (matchRes?.ok && matchRes.template) suggested = matchRes.template;
+    try {
+      const matchRes = await sendMsg(MSG.MATCH_TEMPLATE, { jobTitle });
+      if (matchRes?.template) suggested = matchRes.template;
+    } catch { /* ignore */ }
   }
 
   const chosen = await showTemplateDialog(jobTitle, tplList, suggested);
   if (!chosen) return;
 
-  // 保存 jobTemplate 绑定
-  const settings = await getSettings();
+  const settings = await cvfxGetSettings();
   const resumeData = cvfx.extractResumeData(settings.fieldConfig);
   if (resumeData.jobId) {
-    await chrome.runtime.sendMessage({
-      type: 'SET_JOB_TEMPLATE',
-      jobId: resumeData.jobId,
-      templateId: chosen,
-    });
+    await sendMsg(MSG.SET_JOB_TEMPLATE, { jobId: resumeData.jobId, templateId: chosen });
   }
 
-  // 重新渲染 overlay 为 idle，显示新模板名
   const newTpl = templates[chosen];
-  cvfx.renderOverlay('idle', { templateName: newTpl?.name });
+
+  if (confirm('是否使用新模板重新评分？')) {
+    const s = await cvfxGetSettings();
+    await scoreCandidate(s, chosen, null);
+  } else {
+    cvfx.renderOverlay('idle', { templateName: newTpl?.name });
+  }
 });
 
 // Popup / Background 消息
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   switch (msg.type) {
-    case 'START_BATCH':
+    case MSG.START_BATCH:
       cvfx.startBatch(msg.templateId)
         .then(() => sendResponse({ ok: true }))
         .catch(e => sendResponse({ ok: false, error: e.message }));
       return true;
 
-    case 'STOP_BATCH':
+    case MSG.STOP_BATCH:
       cvfx.stopBatch().then(() => sendResponse({ ok: true }));
       return true;
 
-    case 'GET_PAGE_TYPE':
-      sendResponse({ pageType: cvfx.detectPageType() });
+    case MSG.GET_PAGE_TYPE:
+      sendResponse({ pageType: cvfx.detectPageType(), pageReady: cvfx.pageReady });
       break;
 
-    case 'GET_CANDIDATE_COUNT': {
+    case MSG.GET_CANDIDATE_COUNT: {
       const links = cvfx.collectCandidateLinks?.() ?? [];
       sendResponse({ count: links.length });
       break;
     }
 
-    case 'SCORE_CURRENT': {
-      getSettings().then(settings => {
+    case MSG.SCORE_CURRENT: {
+      cvfxGetSettings().then(settings => {
         scoreCandidate(settings, msg.templateId || null, null);
       });
       sendResponse({ ok: true });
       return true;
     }
 
-    case 'TEMPLATE_CHANGED': {
+    case MSG.TEMPLATE_CHANGED: {
       const tplName = msg.templateName || null;
       cvfx.renderOverlay('idle', { templateName: tplName });
       sendResponse({ ok: true });
@@ -491,7 +206,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   }
 });
 
-// SPA 路由变化（飞书是 History API）
+// ── SPA 路由变化 ──────────────────────────────────────────────
 let lastPath = location.pathname + location.search;
 
 function handleRouteChange() {
@@ -499,6 +214,7 @@ function handleRouteChange() {
   if (cur !== lastPath) {
     lastPath = cur;
     currentTalentId = null;
+    cvfx.pageReady = false;
     setTimeout(init, 400);
   }
 }

@@ -5,13 +5,7 @@
 
 const $ = id => document.getElementById(id);
 
-const DEFAULT_DIMS = [
-  { key: 'educationMatch',  label: '学历匹配',  description: '候选人学历、专业与岗位要求的匹配程度', weight: 20 },
-  { key: 'experienceMatch', label: '经验匹配',  description: '工作年限、行业背景与岗位要求的匹配程度', weight: 30 },
-  { key: 'skillMatch',      label: '技能匹配',  description: '技术技能、工具与岗位要求的匹配程度',     weight: 30 },
-  { key: 'stability',       label: '工作稳定性', description: '历史工作年限分布，评估跳槽频率',         weight: 10 },
-  { key: 'growthPotential', label: '成长潜力',  description: '职业发展轨迹、晋升节奏与成长空间',       weight: 10 },
-];
+// DEFAULT_DIMENSIONS comes from lib/constants.js (loaded via <script>)
 
 let settings = {};
 let currentTemplates = {};
@@ -19,7 +13,7 @@ let editingTemplateId = null;
 
 // ── 初始化 ────────────────────────────────────────────────────
 async function init() {
-  const res = await chrome.runtime.sendMessage({ type: 'GET_SETTINGS' });
+  const res = await sendMsg(MSG.GET_SETTINGS);
   settings = res.settings;
 
   // Tab 1: API
@@ -85,11 +79,14 @@ $('btn-test').addEventListener('click', async () => {
 
   btn.disabled = true;
   showFeedback('test-result', '', '连接中...');
-  const res = await chrome.runtime.sendMessage({ type: 'TEST_CONNECTION', settings: cfg });
-  btn.disabled = false;
-  res.ok
-    ? showFeedback('test-result', 'ok', `OK ${res.result}`)
-    : showFeedback('test-result', 'err', `FAIL: ${res.error}`);
+  try {
+    const res = await sendMsg(MSG.TEST_CONNECTION, { settings: cfg });
+    btn.disabled = false;
+    showFeedback('test-result', 'ok', `OK ${res.result}`);
+  } catch (e) {
+    btn.disabled = false;
+    showFeedback('test-result', 'err', `FAIL: ${e.message}`);
+  }
 });
 
 // ── Tab 2: 字段配置 ──────────────────────────────────────────
@@ -107,11 +104,11 @@ $('btn-save-fields').addEventListener('click', async () => {
 
 // ── Tab 3: 评分模板 ──────────────────────────────────────────
 async function loadTemplates() {
-  const res = await chrome.runtime.sendMessage({ type: 'GET_TEMPLATES' });
-  if (res.ok) {
+  try {
+    const res = await sendMsg(MSG.GET_TEMPLATES);
     currentTemplates = res.templates;
     renderTemplateList();
-  }
+  } catch { /* ignore */ }
 }
 
 function renderTemplateList() {
@@ -139,6 +136,7 @@ function renderTemplateList() {
             ${defaultBadge}
           </div>
           <div class="template-actions">
+            ${!t.isDefault ? `<button class="btn secondary btn-xs tpl-set-default" data-id="${t.id}">设为默认</button>` : ''}
             <button class="btn secondary btn-xs tpl-edit" data-id="${t.id}">编辑</button>
             <button class="btn secondary btn-xs tpl-clone" data-id="${t.id}">克隆</button>
             <button class="btn danger btn-xs tpl-delete" data-id="${t.id}">删除</button>
@@ -157,28 +155,40 @@ function renderTemplateList() {
   list.querySelectorAll('.tpl-edit').forEach(btn => {
     btn.addEventListener('click', () => openTemplateEditor(btn.dataset.id));
   });
+  list.querySelectorAll('.tpl-set-default').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      try {
+        await sendMsg(MSG.SET_DEFAULT_TEMPLATE, { templateId: btn.dataset.id });
+        showFeedback('save-template-result', 'ok', 'OK 已设为默认');
+        setTimeout(() => showFeedback('save-template-result', '', ''), 2000);
+        await loadTemplates();
+      } catch (e) {
+        showFeedback('save-template-result', 'err', `FAIL: ${e.message}`);
+      }
+    });
+  });
   list.querySelectorAll('.tpl-clone').forEach(btn => {
     btn.addEventListener('click', async () => {
-      const res = await chrome.runtime.sendMessage({ type: 'CLONE_TEMPLATE', templateId: btn.dataset.id });
-      if (res.ok) {
+      try {
+        await sendMsg(MSG.CLONE_TEMPLATE, { templateId: btn.dataset.id });
         showFeedback('save-template-result', 'ok', 'OK 已克隆');
         setTimeout(() => showFeedback('save-template-result', '', ''), 2000);
         await loadTemplates();
-      } else {
-        showFeedback('save-template-result', 'err', `FAIL: ${res.error}`);
+      } catch (e) {
+        showFeedback('save-template-result', 'err', `FAIL: ${e.message}`);
       }
     });
   });
   list.querySelectorAll('.tpl-delete').forEach(btn => {
     btn.addEventListener('click', async () => {
       if (!confirm('确认删除该模板？关联的职位将需要重新选择模板。')) return;
-      const res = await chrome.runtime.sendMessage({ type: 'DELETE_TEMPLATE', templateId: btn.dataset.id });
-      if (res.ok) {
+      try {
+        await sendMsg(MSG.DELETE_TEMPLATE, { templateId: btn.dataset.id });
         showFeedback('save-template-result', 'ok', 'OK 已删除');
         setTimeout(() => showFeedback('save-template-result', '', ''), 2000);
         await loadTemplates();
-      } else {
-        showFeedback('save-template-result', 'err', `FAIL: ${res.error}`);
+      } catch (e) {
+        showFeedback('save-template-result', 'err', `FAIL: ${e.message}`);
       }
     });
   });
@@ -197,16 +207,50 @@ function openTemplateEditor(templateId) {
     $('tpl-name').value = t.name ?? '';
     $('tpl-desc').value = t.description ?? '';
     $('tpl-keywords').value = (t.matchKeywords ?? []).join(', ');
-    $('tpl-prompt').value = t.promptTemplate ?? '';
-    renderModalDimensions(t.dimensionConfig ?? DEFAULT_DIMS);
+    const jdMode = t.jdMode ?? 'auto';
+    document.querySelector(`input[name="jd-mode"][value="${jdMode}"]`).checked = true;
+    $('tpl-manual-jd').value = t.manualJD ?? '';
+    $('jd-auto-hint').style.display = jdMode === 'manual' ? 'none' : '';
+    $('tpl-manual-jd').style.display = jdMode === 'manual' ? '' : 'none';
+    renderModalDimensions(t.dimensionConfig ?? DEFAULT_DIMENSIONS);
+    fillPromptSections(t.promptSections);
   } else {
     $('modal-title').textContent = '新建模板';
     $('tpl-name').value = '';
     $('tpl-desc').value = '';
     $('tpl-keywords').value = '';
-    $('tpl-prompt').value = '';
-    renderModalDimensions(DEFAULT_DIMS);
+    document.querySelector('input[name="jd-mode"][value="auto"]').checked = true;
+    $('tpl-manual-jd').value = '';
+    $('jd-auto-hint').style.display = '';
+    $('tpl-manual-jd').style.display = 'none';
+    renderModalDimensions(DEFAULT_DIMENSIONS);
+    fillPromptSections(null);
   }
+
+  // 清除关键词测试状态
+  $('tpl-keyword-test-input').value = '';
+  $('keyword-test-result').textContent = '';
+  $('keyword-test-result').className = 'keyword-test-result';
+}
+
+function fillPromptSections(sections) {
+  const s = sections ?? {};
+  $('tpl-ps-roleSetup').value = s.roleSetup ?? PROMPT_SECTION_DEFAULTS.roleSetup;
+  $('tpl-ps-taskGuide').value = s.taskGuide ?? PROMPT_SECTION_DEFAULTS.taskGuide;
+  $('tpl-ps-outputRules').value = s.outputRules ?? PROMPT_SECTION_DEFAULTS.outputRules;
+}
+
+function getPromptSectionsFromDOM() {
+  const roleSetup = $('tpl-ps-roleSetup').value.trim();
+  const taskGuide = $('tpl-ps-taskGuide').value.trim();
+  const outputRules = $('tpl-ps-outputRules').value.trim();
+
+  // 如果内容和默认值一致，存 null（表示使用默认）
+  return {
+    roleSetup: roleSetup === PROMPT_SECTION_DEFAULTS.roleSetup ? null : (roleSetup || null),
+    taskGuide: taskGuide === PROMPT_SECTION_DEFAULTS.taskGuide ? null : (taskGuide || null),
+    outputRules: outputRules === PROMPT_SECTION_DEFAULTS.outputRules ? null : (outputRules || null),
+  };
 }
 
 function closeModal() {
@@ -279,7 +323,7 @@ $('btn-modal-add-dim').addEventListener('click', () => {
 
 $('btn-modal-save').addEventListener('click', async () => {
   const name = $('tpl-name').value.trim();
-  if (!name) { alert('请填写模板名称'); return; }
+  if (!name) { showToast('请填写模板名称', 'warning'); return; }
 
   const dims = getModalDimsFromDOM();
   const total = dims.reduce((s, d) => s + d.weight, 0);
@@ -292,13 +336,21 @@ $('btn-modal-save').addEventListener('click', async () => {
     ? keywordsStr.split(/[,，]/).map(k => k.trim()).filter(Boolean)
     : [];
 
+  const jdMode = document.querySelector('input[name="jd-mode"]:checked')?.value ?? 'auto';
+  if (jdMode === 'manual' && !$('tpl-manual-jd').value.trim()) {
+    showToast('手动模式下请填写岗位描述', 'warning');
+    return;
+  }
   const template = {
     id: editingTemplateId || undefined,
     name,
     description: $('tpl-desc').value.trim(),
     dimensionConfig: dims,
-    promptTemplate: $('tpl-prompt').value,
+    promptSections: getPromptSectionsFromDOM(),
+    promptTemplate: '',  // 清空旧字段，新模式使用 promptSections
     matchKeywords,
+    jdMode,
+    manualJD: jdMode === 'manual' ? $('tpl-manual-jd').value.trim() : '',
   };
 
   // 保留已有模板的 isDefault 状态
@@ -306,14 +358,14 @@ $('btn-modal-save').addEventListener('click', async () => {
     template.isDefault = currentTemplates[editingTemplateId].isDefault;
   }
 
-  const res = await chrome.runtime.sendMessage({ type: 'SAVE_TEMPLATE', template });
-  if (res.ok) {
+  try {
+    await sendMsg(MSG.SAVE_TEMPLATE, { template });
     closeModal();
     showFeedback('save-template-result', 'ok', 'OK 已保存');
     setTimeout(() => showFeedback('save-template-result', '', ''), 2000);
     await loadTemplates();
-  } else {
-    alert(`保存失败：${res.error}`);
+  } catch (e) {
+    showToast(`保存失败：${e.message}`, 'error');
   }
 });
 
@@ -330,13 +382,13 @@ $('btn-save-advanced').addEventListener('click', async () => {
 // ── 共用 save ─────────────────────────────────────────────────
 async function save(partial, feedbackId) {
   showFeedback(feedbackId, '', '保存中...');
-  const res = await chrome.runtime.sendMessage({ type: 'SAVE_SETTINGS', settings: partial });
-  if (res.ok) {
+  try {
+    await sendMsg(MSG.SAVE_SETTINGS, { settings: partial });
     Object.assign(settings, partial);
     showFeedback(feedbackId, 'ok', 'OK 已保存');
     setTimeout(() => showFeedback(feedbackId, '', ''), 3000);
-  } else {
-    showFeedback(feedbackId, 'err', `FAIL: ${res.error}`);
+  } catch (e) {
+    showFeedback(feedbackId, 'err', `FAIL: ${e.message}`);
   }
 }
 
@@ -347,9 +399,126 @@ function showFeedback(id, cls, text) {
   el.className = `feedback ${cls}`;
 }
 
-function esc(str) {
-  return String(str ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
+// esc() is an alias for escHtml() from lib/utils.js
+function esc(str) { return escHtml(str ?? ''); }
+
+// ── Prompt 预览 ─────────────────────────────────────────────────
+$('btn-prompt-preview').addEventListener('click', () => {
+  const dims = getModalDimsFromDOM();
+  const dimsText = dims
+    .map(d => `- key="${d.key}"  ${d.label}（权重 ${d.weight}%）：${d.description}`)
+    .join('\n');
+
+  const dimSchema = dims
+    .map(d => `    "${d.key}": { "score": <0-10整数>, "comment": "<理由>" }`)
+    .join(',\n');
+
+  const schema = `{
+  "recommendation": "pass" | "hold" | "reject",
+  "dimensions": {
+${dimSchema}
+  },
+  "summary": "<100字内综合点评>",
+  "highlights": ["<亮点1>", "<亮点2>"],
+  "concerns": ["<关注点1>"]
+}`;
+
+  const sections = getPromptSectionsFromDOM();
+  const role = sections.roleSetup ?? PROMPT_SECTION_DEFAULTS.roleSetup;
+  const task = sections.taskGuide ?? PROMPT_SECTION_DEFAULTS.taskGuide;
+  const rules = sections.outputRules ?? PROMPT_SECTION_DEFAULTS.outputRules;
+
+  const jdModeVal = document.querySelector('input[name="jd-mode"]:checked')?.value ?? 'auto';
+  const jdPreview = jdModeVal === 'manual'
+    ? ($('tpl-manual-jd').value.trim() || '【未填写手动 JD】')
+    : '【运行时将填入实际岗位描述 JD】';
+
+  const preview = `${role}
+
+## 任务说明
+
+${task}
+
+---
+
+## 岗位描述
+${jdPreview}
+
+## 候选人简历
+【运行时将填入实际候选人简历数据（JSON 格式）】
+
+## 评估维度（请对每个维度打分 0-10）
+${dimsText}
+
+## 输出格式（严格 JSON，dimensionKey 与上方维度 key 对应）
+${schema}
+
+${rules}`;
+
+  $('prompt-preview-text').value = preview;
+  $('prompt-preview-modal').style.display = '';
+});
+
+$('prompt-preview-close').addEventListener('click', () => {
+  $('prompt-preview-modal').style.display = 'none';
+});
+$('prompt-preview-ok').addEventListener('click', () => {
+  $('prompt-preview-modal').style.display = 'none';
+});
+$('prompt-preview-backdrop').addEventListener('click', () => {
+  $('prompt-preview-modal').style.display = 'none';
+});
+
+// ── JD 模式切换 ─────────────────────────────────────────────────
+document.querySelectorAll('input[name="jd-mode"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    const isManual = radio.value === 'manual' && radio.checked;
+    $('jd-auto-hint').style.display = isManual ? 'none' : '';
+    $('tpl-manual-jd').style.display = isManual ? '' : 'none';
+  });
+});
+
+// ── Prompt 恢复默认 ──────────────────────────────────────────────
+document.querySelectorAll('.prompt-reset').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.dataset.section;
+    const textarea = $(`tpl-ps-${section}`);
+    if (textarea && PROMPT_SECTION_DEFAULTS[section]) {
+      textarea.value = PROMPT_SECTION_DEFAULTS[section];
+    }
+  });
+});
+
+// ── 关键词匹配测试 ──────────────────────────────────────────────
+$('btn-keyword-test').addEventListener('click', () => {
+  const testTitle = $('tpl-keyword-test-input').value.trim();
+  const keywordsStr = $('tpl-keywords').value.trim();
+  const resultEl = $('keyword-test-result');
+
+  if (!testTitle) {
+    resultEl.textContent = '请输入职位标题';
+    resultEl.className = 'keyword-test-result no-match';
+    return;
+  }
+
+  if (!keywordsStr) {
+    resultEl.textContent = '未设置关键词';
+    resultEl.className = 'keyword-test-result no-match';
+    return;
+  }
+
+  const keywords = keywordsStr.split(/[,，]/).map(k => k.trim()).filter(Boolean);
+  const title = testTitle.toLowerCase();
+  const matched = keywords.filter(kw => title.includes(kw.toLowerCase()));
+
+  if (matched.length > 0) {
+    resultEl.textContent = `匹配到 ${matched.length} 个关键词：${matched.join(', ')}`;
+    resultEl.className = 'keyword-test-result match';
+  } else {
+    resultEl.textContent = '未匹配到任何关键词';
+    resultEl.className = 'keyword-test-result no-match';
+  }
+});
 
 // ── 启动 ──────────────────────────────────────────────────────
 init();
