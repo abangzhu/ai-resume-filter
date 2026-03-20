@@ -352,10 +352,15 @@ function buildFooter(state, payload = {}) {
   return `<div id="cvfx-footer">${toggle}${state !== 'loading' ? rescore : ''}</div>`;
 }
 
+function getOverlayState() {
+  return overlayState;
+}
+
 // ── 导出 ─────────────────────────────────────────────────────
 window.__cvfx = window.__cvfx || {};
 Object.assign(window.__cvfx, {
   mountOverlay,
   unmountOverlay,
   renderOverlay,
+  getOverlayState,
 });
