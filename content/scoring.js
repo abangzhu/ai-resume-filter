@@ -6,7 +6,16 @@
 
 async function scoreCandidate(settings, explicitTemplateId, afterScore) {
   const cvfx = window.__cvfx;
+  cvfx.isScoring = true;
 
+  try {
+    return await _scoreCandidate(cvfx, settings, explicitTemplateId, afterScore);
+  } finally {
+    cvfx.isScoring = false;
+  }
+}
+
+async function _scoreCandidate(cvfx, settings, explicitTemplateId, afterScore) {
   if (!settings.apiKey) {
     cvfx.renderOverlay('error', { error: 'API Key 未配置，请打开设置页填写。' });
     sendMsg(MSG.OPEN_OPTIONS).catch(() => {});

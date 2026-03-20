@@ -26,6 +26,9 @@ async function init() {
 
 // ── 候选人详情页 ──────────────────────────────────────────────
 async function onCandidateDetailPage() {
+  // 评分进行中，不重新初始化
+  if (cvfx.isScoring) return;
+
   try {
     await cvfx.waitForElement(cvfx.SELECTORS.candidate.talentEl, 10000);
   } catch {
@@ -33,7 +36,10 @@ async function onCandidateDetailPage() {
     return;
   }
 
-  const talentId = location.pathname.match(cvfx.URL_PATTERNS.talentId)?.[1];
+  // 统一使用 DOM data-talent-id（与 extractResumeData 一致），URL 作为 fallback
+  const domTalentId = document.querySelector('[data-talent-id]')?.getAttribute('data-talent-id');
+  const urlTalentId = location.pathname.match(cvfx.URL_PATTERNS.talentId)?.[1];
+  const talentId = domTalentId || urlTalentId;
   if (talentId === currentTalentId) return;
   currentTalentId = talentId;
 
@@ -78,7 +84,10 @@ async function onCandidateDetailPage() {
       await cvfx.waitForElement(cvfx.SELECTORS.candidate.resumeTabContent, 8000);
     } catch { /* 超时不阻断 */ }
     cvfx.pageReady = true;
-    cvfx.renderOverlay('idle', { templateName: templateInfo?.name, pageReady: true });
+    // 仅在 overlay 仍为 idle 时更新，避免覆盖 loading/scored 状态
+    if (cvfx.getOverlayState() === 'idle') {
+      cvfx.renderOverlay('idle', { templateName: templateInfo?.name, pageReady: true });
+    }
   }
 }
 
@@ -207,10 +216,10 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
 });
 
 // ── SPA 路由变化 ──────────────────────────────────────────────
-let lastPath = location.pathname + location.search;
+let lastPath = location.pathname;
 
 function handleRouteChange() {
-  const cur = location.pathname + location.search;
+  const cur = location.pathname;
   if (cur !== lastPath) {
     lastPath = cur;
     currentTalentId = null;
